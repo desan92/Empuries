@@ -1,0 +1,293 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-image: url(../images/background/cadaques.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#col1collapse{
+    text-align: center;
+    color: white;
+}
+
+.div_img img{
+    align-items: center;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 10px;
+}
+
+.user a{
+    text-decoration: none;
+    padding: 15px;
+    font-size: 14px;
+    color: white;
+}
+
+.llista{
+    text-align: center;
+}
+
+.llista ul li {
+    list-style: none;
+}
+
+
+.llista ul li a{
+    width: 100%;
+    line-height: 30px;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+}
+
+.llista ul li:hover{
+    text-decoration: none;
+    background-color: #61D4EE;
+    color: navy;
+}
+
+#separacio{
+    background-color: navy;
+    height: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#photo_carousel img{
+    image-rendering: pixelated;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#btn_intro .col-2{
+    top: 20px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 125px;
+    background-color: navy;
+}
+
+#btn_intro .col-2:hover{
+    background-color: white;
+}
+
+.col-2 .fas{
+    font-size: 50px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.col-2 .fas:hover{
+    color: navy;
+}
+
+#icon_1{
+    margin-top: 25px;
+}
+
+.icon_1{
+    border-width: 4px 4px 4px 4px;
+    border-color: white;
+    border-style: solid;
+}
+
+.icon_2{
+    border-width: 4px 2px 4px 0px;
+    border-color: white;
+    border-style: solid;
+}
+
+.icon_3{
+    border-width: 4px 2px 4px 2px;
+    border-color: white;
+    border-style: solid;
+}
+
+.icon_4{
+    border-width: 4px 0px 4px 2px;
+    border-color: white;
+    border-style: solid;
+}
+
+.icon_5{
+    border-width: 4px 4px 4px 4px;
+    border-color: white;
+    border-style: solid;
+}
+
+.col-2 a{
+    text-decoration: none;
+    color: white;
+}
+
+.col-2 a:hover{
+    text-decoration: none;
+    color: navy;
+}
+
+@media all and (max-width: 700px){
+    #btn_intro .col-2{
+        height: 95px;
+    }
+
+    .col-2 .fas{
+        font-size: 15px;
+    }
+    
+    .col-2 a{
+    font-size: 8px;
+    font-weight: 500;
+    }
+}
+
+/*LOGIN*/
+
+.recuadre {
+    padding: 25px;
+    background-color: #ffffffc4;
+    margin-top:4%;
+    margin-bottom:4%;
+    }
+
+#titollog{
+    padding: 5%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    }
+
+.columna{
+    height: 425px;
+}
+
+.btn-group{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn{
+    background-color: #61D4EE;
+    border: 3px;
+}
+
+.btn_log{
+    color: white;
+    background-color: navy;
+    border: 3px;
+    padding: 10px;
+}
+
+.btn:hover{
+    background-color: #2CA1BC;
+}
+
+.btn_log:hover{
+    background-color: white;
+}
+
+
+.formulari_registre{
+    display: none;
+}
+
+.buit_registre{
+    color: red;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+#titol{
+    margin-left: 20px;
+}
+
+
+#botocentrat{
+    text-align: center;
+    }
+
+#titolregistre{
+    padding: 5%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    }
+    #titollog{
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    #subtitollog{
+        top: -35px;
+        text-align: center;
+        margin: auto;
+    }
+
+#form_registre{
+    text-align: center;
+    margin: auto;
+    text-align: center;
+}
+.recuadre{
+    padding: 25px;
+    background-color: #ffffffc4;
+    margin-top:4%;
+    margin-bottom:4%;
+    }
+.recuadre_allotjament{
+    padding: 25px;
+    background-color: #ffffffc4;
+    margin-top:4%;
+    margin-bottom:4%;
+    }
+    
+    @media all and (max-width: 768px){
+        #input_registre{
+            text-align: center;
+        }
+        #subtitollog{
+            top: -20px;
+        }
+}
+
+/*MONUMENTS.PHP*/
+
+#enllaç_img{
+    width: 250px;
+    height: 310px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+#imatges_turistiques{
+    border: 5px solid white;
+    height: 250px;
+    width: 250px;
+}
+
+#text_img_turistiques{
+    border: 5px solid white;
+    width: 250px;
+    height: 60px;
+    background-color: white;
+    text-align: center;
+}
+
+#text_img_turistiques a{
+    text-decoration: none;
+    color: navy;
+}
