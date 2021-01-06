@@ -1,4 +1,26 @@
-<?php session_start(); ?>
+<?php session_start();
+if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
+{
+    if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
+    {
+        $user = $_SESSION["user"];
+        $nom = $_SESSION["nom"];
+        $cognom = $_SESSION['cognom'];
+        $mail = $_SESSION['mail'];
+        $id = $_SESSION["id"];
+    }
+    else
+    {
+        header("Location: index.php");
+    }
+    
+}
+else
+{
+    header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -74,9 +96,8 @@
         }
 
         @media all and (max-width: 768px){
-            .form_contacte{
-                padding-left: 15px;
-                padding-right: 15px;
+            #desc_user{
+                margin-top: 25px;
             }
         }
     </style>
@@ -88,88 +109,63 @@
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Qui som?<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
-    </div>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-5 col-sm-12 m-auto recuadre_personal">
-                <img src="images/perfil/perfil.jpg" id="imatge-personal" class="rounded d-block m-auto">
-                <p class="mt-3"><b>Nom:</b> Jordi</p>
-                <p><b>Cognom:</b> de San Antonio Planas</p>
-                <p><b>Estudis:</b> Graduat en Historia (UAB).</p>
-                <p><b>Especialitat:</b> Master en Arqueologia Clasica (UAB) i
-                Master en Historia de l'Art (UAB).</p>
-                <p><b>Funcio:</b> </p>
-            </div>
-            <div class="col-md-2 col-sm-12"></div>
-            <div class="col-md-5 col-sm-12 recuadre_personal">
-                <img src="images/perfil/perfil.jpg" id="imatge-personal" class="rounded d-block m-auto">
-                <p class="mt-3"><b>Nom:</b> Glòria</p>
-                <p><b>Cognom:</b> Vergés Marés</p>
-                <p><b>Estudis:</b> Graduada en Historia (UAB).</p>
-                <p><b>Especialitat:</b> Master de Mediterrani Antic (UAB).</p>
-                <p><b>Funcio:</b> </p>
-            </div>
-        </div>
-   </div>
-   <div class="container-fluid">
-   <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
        <div class="row">
-           <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Contacte</b></span></h2>
-           </div>
+            <div class="col p-0">
+            <nav class="navbar navbar-expand-sm justify-content-center" style="background-color: navy;">
+                  <ul class="navbar-nav">
+                      <li class="nav-item"><a class="nav-link" href="profile_client.php">Perfil</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#">link2</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#">link3</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#">link4</a></li>
+                      <li class="nav-item"><a class="nav-link" href="log_register/session_exit.php">Sortir</a></li>
+                  </ul>
+              </nav>
+            </div>
        </div>
-       <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-md-3"></div>
+       <div class="row mt-3 mb-3">
+            <div class="col-md-3"></div>
             <div class="col-md-6 form_contacte">
-            <form action="mail/mail.php" method="POST">
+            <form action="perfil/perfil_modificar.php?id='<?php echo $id; ?>'" method="POST">
                 <div class="form-group">
                     <label for="exampleInputNom">Nom</label>
-                    <input type="nom" name="nom" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>
+                    <input type="text" name="nom" value="<?php echo $nom; ?>" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputCognom">Cognom</label>
+                    <input type="text" name="cognom" value="<?php echo $cognom; ?>" class="form-control" id="exampleInputCognom" aria-describedby="nomHelp" placeholder="Cognom" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+                    <input type="email" name="email" value="<?php echo $mail; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputSubject">Tema</label>
-                    <input type="subject" name="subject" class="form-control" id="exampleInputSubject" aria-describedby="subjectHelp" placeholder="Tema" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Missatge</label>
-                    <textarea class="form-control" name="missatge" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    <label for="exampleInputUser">Usuari</label>
+                    <input type="text" name="user" value="<?php echo $user; ?>" class="form-control" id="exampleInputUser" aria-describedby="subjectHelp" placeholder="Usuari" required>
                 </div>
                 <button type="submit" class="btn btn-primary float-right">Enviar</button>
             </form>
-                <?php 
-                    if(isset($_GET["missatge_status"]) && !empty($_GET["missatge_status"] == "error"))
-                    {
-                        echo "<p class='buit_registre'>Error, el missatge no s'ha enviat.</p>";
-                    }
-                    elseif(isset($_GET["missatge_status"]) && !empty($_GET["missatge_status"] == "send"))
-                    {
-                        echo '<script language="javascript">';
-                        echo 'alert("missatge enviat correctament")';
-                        echo '</script>';
-                    }
-                ?>
+            <?php 
+                if(isset($_GET["modificar"]) && !empty($_GET["modificar"] == "repetit"))
+                {
+                    echo "<p class='buit_registre'>Error, l'usuari o el mail ja existeixen.</p>";
+                }
+                elseif(isset($_GET["modificar"]) && !empty($_GET["modificar"] == "error"))
+                {
+                    echo "<p class='buit_registre'>Error, dades incorrectes.</p>";
+                }
+            ?>
             </div>
             <div class="col-md-3"></div>
        </div>
-   </div>
-   <div class="div-spacer"></div>
-   <div class="div-spacer"></div>
-   <div class="div-spacer"></div>
+    </div>
    <?php include('header_footer/footer.php'); ?>
 
-    <script src="js/whatsapp/animation_whatsapp_top.js"></script>
+   <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>
     <script src="bootstrap-4.5.0-dist/js/popper.min.js"></script>

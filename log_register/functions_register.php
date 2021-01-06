@@ -38,6 +38,30 @@ function SelectLog($pass, $user, $conn)
     return $count;
 }
 
+function SelectLogInfo($pass, $user, $conn)
+{
+    $select = "SELECT * 
+               FROM `informacio_usuari` 
+               WHERE username='" . $user . "' AND contrasenya=md5('" . $pass . "');";
+
+    $resultSelect = mysqli_query($conn, $select);
+
+    if($row = mysqli_fetch_array($resultSelect, MYSQLI_BOTH))
+    {
+        do{
+            $data[] = $row;
+        }
+        while($row = mysqli_fetch_array($resultSelect, MYSQLI_BOTH));
+    }
+    else
+    {
+        $data = null;
+    }
+
+    mysqli_free_result($resultSelect);
+    return ($data);
+}
+
 function Selectrol($user, $conn)
 {
     $select= "SELECT informacio_usuari.id_rol, rols_usuari.tipus_rol AS tipus_rol
@@ -47,9 +71,9 @@ function Selectrol($user, $conn)
     $resultSelect = mysqli_query($conn, $select);
     while($row = $resultSelect->fetch_assoc())
     {
-        $tipus_rol = $row['tipus_rol']."<br>";
+        $tipus_rol = $row['tipus_rol']; /* . "<br>" */
     }
-    echo $tipus_rol;
+    //echo $tipus_rol;
     return $tipus_rol;
 }
 
