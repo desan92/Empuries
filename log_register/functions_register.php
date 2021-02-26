@@ -14,7 +14,7 @@ function SelectUserMail($mail, $user, $conn)
 function Inserbbdd($nom, $cognom, $mail, $user, $pass, $conn)
 {
     $insert = "INSERT INTO `informacio_usuari`(`nom_usuari`, `cognom_usuari`, `username`, `contrasenya`, `mail`, `creat`, `id_rol`) 
-               VALUES ('"  . $nom . "', '" . $cognom  . "', '" . $user . "', md5('" . $pass  . "'), '" . $mail . "', CURRENT_TIMESTAMP, 2);";
+               VALUES (\""  . $nom . "\", \"" . $cognom  . "\", \"" . $user . "\", md5(\"" . $pass  . "\"), \"" . $mail . "\", CURRENT_TIMESTAMP, 2);";
     
     if(mysqli_query($conn, $insert))
     {
@@ -62,7 +62,7 @@ function SelectLogInfo($pass, $user, $conn)
     return ($data);
 }
 
-function Selectrol($user, $conn)
+/*function Selectrol($user, $conn)
 {
     $select= "SELECT informacio_usuari.id_rol, rols_usuari.tipus_rol AS tipus_rol
     FROM `informacio_usuari`, `rols_usuari` 
@@ -71,10 +71,10 @@ function Selectrol($user, $conn)
     $resultSelect = mysqli_query($conn, $select);
     while($row = $resultSelect->fetch_assoc())
     {
-        $tipus_rol = $row['tipus_rol']; /* . "<br>" */
+        $tipus_rol = $row['tipus_rol']; 
     }
     //echo $tipus_rol;
     return $tipus_rol;
-}
+}*/
 
 ?>

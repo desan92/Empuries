@@ -18,10 +18,21 @@
                         <div class="div_img"><img src="images/sidebar_foto/1.jpg"></div>
                         <?php
                         
-                        if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
+                        if(isset($_SESSION["user"], $_SESSION["rol"]) && !empty($_SESSION["user"]))
                         {
-                            echo "<div class='user'><a href='#'>&nbsp &nbsp" . $_SESSION["user"] . "</a></div>";
-                            echo "<div class='user'><a href='log_register/session_exit.php'> &times; &nbsp Sortir</a></div>";
+                            $rol = $_SESSION["rol"];
+                            $rol = str_replace("<br>", '', $rol);;
+
+                            if($rol == "Client")
+                            {
+                                $link = 'profile_client.php';
+                            }
+                            elseif($rol == "Administrador")
+                            {
+                                $link = 'profile_admin.php';
+                            }
+                            echo "<div class='user text-center'><a href='".$link."'>" . $_SESSION["user"] . "</a></div>";
+                            echo "<div class='user text-center'><a href='log_register/session_exit.php'> Sortir</a></div>";
                             //echo "<p>" .$_SESSION['rol'] . "</p>";
                         }
                         ?>
@@ -32,9 +43,9 @@
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="#">Historia</a></li>
                                 <li><a href="monuments.php">Llocs turistics</a></li>
-                                <li><a href="#">Visitas guiades</a></li>
+                                <li><a href="visites.php">Visitas guiades</a></li>
                                 <li><a href="allotjaments.php">Allotjaments</a></li>
-                                <li><a href="#">Galeria visites</a></li>
+                                <!--<li><a href="#">Galeria visites</a></li>-->
                                 <li><a href="about_us.php">About us</a></li>
                             </ul>
                         </div>

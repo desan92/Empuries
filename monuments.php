@@ -107,19 +107,24 @@
     <div class="container">
        <div class="row mt-3">
             <div class="col-lg-4 col-md-6 col-sm-12 thumb float-left" v-if="carregat" v-for="turisme in info_turistica">
-                <div id="enllaç_img">
-                    <a class="thumbnail" :href="'info_lloc_turistic.php?id=' + turisme.id_turisme">
-                        <div>
-                            <img class="img-responsive css_img" id="imatges_turistiques" :src="'images/img_info_turistica/' + turisme.imatge" alt= "">
-                        </div>
-                        <div id="text_img_turistiques">
-                            <p>{{ turisme.nom_turisme }}</p>
-                        </div>
-                    </a>
+            <div id="block_info">
+            <a class="thumbnail" :href="'info_lloc_turistic.php?id=' + turisme.id_turisme">
+                <div>
+                    <img id="img_info_destacats" :src="'images/img_info_turistica/' + turisme.imatge">
                 </div>
+                <div class="mt-2" id="info_destacats">
+                    <div>
+                        <p class="text-center" id="title_destacats">{{ turisme.nom_turisme }}</p>
+                    </div>
+                </div>
+            </a>
+            </div>
             </div>
         </div>
     </div>
+    <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
 </div>
 <?php include('header_footer/footer.php'); ?>
     <script>

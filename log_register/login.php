@@ -15,7 +15,7 @@ if(isset($_POST["username"], $_POST["password"]) && !empty($_POST["username"]) &
 
     if($count != 0)
     {
-        $tipus_rol = Selectrol($user, $conn);
+        //$tipus_rol = Selectrol($user, $conn);
         $rows = SelectLogInfo($pass, $user, $conn);
         var_dump($rows);
 
@@ -25,8 +25,17 @@ if(isset($_POST["username"], $_POST["password"]) && !empty($_POST["username"]) &
         $_SESSION['cognom'] = $rows[0]['cognom_usuari'];
         $_SESSION['mail'] = $rows[0]['mail'];
         $_SESSION["user"] = $rows[0]['username'];
+
+        if($rows[0]['id_rol'] == 1)
+        {
+            $_SESSION["rol"] = "Administrador"; 
+        }
+        elseif($rows[0]['id_rol'] == 2)
+        {
+            $_SESSION["rol"] = "Client";
+        }
         //echo $_SESSION['id'] . " " . $rows[0]['nom_usuari'] . " " . $rows[0]['cognom_usuari'] . " " . $rows[0]['mail'] . " " . $rows[0]['username'];
-        $_SESSION["rol"] = $tipus_rol;
+        //$_SESSION["rol"] = $tipus_rol;
 
         header("Location: ../index.php");
     }

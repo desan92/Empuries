@@ -30,7 +30,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"]))
             $cognom = $_POST["cognom"];
             $mail = $_POST["email"];
             $user = $_POST["user"];
-            echo $user . " " . $mail . "<br>";
+            //echo $user . " " . $mail . "<br>";
             
             if($mail_session != $mail && $user_session != $user)
             {

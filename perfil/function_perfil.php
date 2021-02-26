@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function SelectUserMail($mail, $user, $conn)
 {
     $select = "SELECT * 
@@ -90,7 +92,14 @@ function Borrar($id, $conn)
 
     if(mysqli_query($conn, $sql))
     {
-        header("Location: ../log_register/session_exit.php");
+        if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
+        {
+            header("Location: ../profile_admin.php?usuari=borrat");
+        }
+        else
+        {
+            header("Location: ../log_register/session_exit.php");
+        }
     }
     else
     {

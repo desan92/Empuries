@@ -58,7 +58,8 @@
             text-align: center;
         }
         .container_allotjaments{
-            padding: 5%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
         #descripcio_hospedatge{
             height: 200px;

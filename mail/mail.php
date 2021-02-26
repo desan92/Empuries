@@ -14,7 +14,7 @@ require '../vendor/autoload.php';
 
 if(isset($_POST["nom"], $_POST["email"], $_POST["subject"], $_POST["missatge"]))
 {
-    if(!empty($_POST["nom"]) || !empty($_POST["email"]) || !empty($_POST["subject"]) || !empty($_POST["missatge"]))
+    if(!empty($_POST["nom"]) && !empty($_POST["email"]) && !empty($_POST["subject"]) && !empty($_POST["missatge"]))
     {
         $nom = $_POST["nom"];
         $email_user= $_POST["email"];

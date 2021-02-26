@@ -40,6 +40,8 @@ else
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="shortcut icon" type="image/png" href="images/logo/logo.png"/>
     <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -118,6 +120,12 @@ else
             margin-bottom:4%;
         }
 
+        #table_monuments{
+            padding: 2%;
+            border-radius: 3px;
+            background-color: #ffffffc4;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -127,6 +135,7 @@ else
 </head>
 
 <body>
+
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -172,25 +181,107 @@ else
             </nav>
             </div>
        </div>
-       <div class="row" id="perfil_info">
-            <div class="col-md-6">
-              <p class="text-center" id="titol_info"><b>Foto de perfil</b></p>
-              <img class="rounded d-block m-auto" src="images/perfil/perfil.jpg" id="imatge-personal">
-           </div>
-           <div class="col-md-6 text-center" id="desc_user">
-              <p class="text-center" id="titol_info"><b>Descripció usuari:</b></p>
-              <ul class="list-inline mx-auto justify-content-center">
-                  <li class=""><b>Nom:</b> <?php echo $nom; ?></li>
-                  <li class=""><b>Cognom:</b> <?php echo $cognom; ?></li>
-                  <li class=""><b>Username:</b> <?php echo $user; ?></li>
-                  <li class=""><b>Email:</b> <?php echo $mail; ?></li>
-                  <li class="mt-3"><a href="profile_edit.php" class="btn btn-primary">Modificar</a> <a href="perfil/perfil_eliminar.php?id='<?php echo $id; ?>'" class="btn btn-primary">Eliminar</a></li>
-              </ul>
+       <div class="div-spacer"></div>
+       <div class="div-spacer"></div>
+       <div class="row">
+           <div class="col-12">
+               <h2 class="titol_destacats text-center w-75"><span><b>Afegir Visites</b></span></h2>
            </div>
        </div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+       <div class="row">
+           <div class="col">
+           <form action="json_visites/dades_visites.php?add=true" method="POST" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <input type="text" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="number" name="preu" class="form-control mb-2" placeholder="Preu">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <input type="text" name="idioma" class="form-control mb-2" placeholder="Idioma">
+                    </div>
+                    <div class="col-md-5">
+                    <input type="number" name="places_totals" class="form-control mb-2" placeholder="Places">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <input type="text" name="durada" class="form-control mb-2" placeholder="Durada">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <input type="text" name="latitud" class="form-control mb-2" placeholder="Latitud">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="longitud" class="form-control mb-2" placeholder="Longitud">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <input type="file" id="fitxer" name="fitxer" class="form-control-file mb-2" style="font-size: 14px;">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="date" name="dia_visita" class="form-control mb-2" placeholder="Dia visita">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-10">
+                        <label for="exampleFormControlTextarea1">Introducció</label>
+                        <textarea class="form-control mb-2" name="intro" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-10">
+                    <label for="exampleFormControlTextarea2">Descripció</label>
+                    <textarea class="form-control mb-2" name="desc" id="exampleFormControlTextarea2" rows="3" required></textarea>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <?php 
+                    if(isset($_GET["fitxer"]) && !empty($_GET["fitxer"] == "existeix"))
+                    {
+                        echo "<p class='buit_registre'>Error, el fitxer ja existeix.</p>";
+                    }
+                ?>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-10 text-right">
+                        <button type="submit" class="btn btn-primary">Afegir</button>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </form>
+           </div>
+       </div> 
     </div>
+    <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
    <?php include('header_footer/footer.php'); ?>
-
+    
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

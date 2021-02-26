@@ -35,7 +35,8 @@
     }
 
     .container_register{
-        padding: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     </style>
@@ -118,19 +119,19 @@
             <!--error-->
             <p id="passcomfirm"></p>
             <?php 
-                        if(isset($_GET["registre"]) && !empty($_GET["registre"] == "buit"))
-                        {
-                            echo "<p class='buit_registre'>Error, algun camp esta buit</p>";
-                        }
-                        elseif(isset($_GET["registre"]) && !empty($_GET["registre"] == "repetit"))
-                        {
-                            echo "<p class='buit_registre'>Error, l'usuari o el mail ja existeixent</p>";
-                        }
-                        elseif(isset($_GET["registre"]) && !empty($_GET["registre"] == "pass"))
-                        {
-                            echo "<p class='buit_registre'>Error, las contrasenyas no coincideixen</p>";
-                        }
-                         ?>
+                if(isset($_GET["registre"]) && !empty($_GET["registre"] == "buit"))
+                {
+                    echo "<p class='buit_registre'>Error, algun camp esta buit</p>";
+                }
+                elseif(isset($_GET["registre"]) && !empty($_GET["registre"] == "repetit"))
+                {
+                    echo "<p class='buit_registre'>Error, l'usuari o el mail ja existeixent</p>";
+                }
+                elseif(isset($_GET["registre"]) && !empty($_GET["registre"] == "pass"))
+                {
+                    echo "<p class='buit_registre'>Error, las contrasenyas no coincideixen</p>";
+                }
+            ?>
             <div class="form-grouprow justify-content-center">
                 <div>
                     <input type="submit" value="Registre" class="btn btn_log">

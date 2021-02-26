@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("../bbdd/conexio.php");
 
 $conn = mysqli_connect("localhost", "root", "", "empuries");
@@ -45,10 +45,37 @@ if(isset($_GET["city"]) && !empty($_GET["city"]))
     }
 
 }
+/*elseif (isset($_GET["eliminarid"])){
+            
+    $id = $_GET["eliminarid"];
+    if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
+    {
+        $sql = "DELETE FROM info_allotjament WHERE id_allotjament =" . $id;
+        if(mysqli_query($conn, $sql))
+        {
+            header("Location: ../profile_allotjaments_admin.php");
+        }
+        else
+        {
+            header("Location: ../profile_allotjaments_admin.php?borrar=error");
+        }
+    }
+    else
+    {
+        header("Location: ../index.php");//ERROR 404 PAGE
+    }			
+}
 else
 {
-    
-}
+    $sql = "SELECT * FROM `info_allotjament`;";
+
+    $resultSelectLllocs = mysqli_query($conn, $sql);
+    while($row = $resultSelectLllocs->fetch_assoc())
+    {
+        $allotjament[] = $row;
+    }
+    echo json_encode($allotjament);
+}*/
 
 
 ?>

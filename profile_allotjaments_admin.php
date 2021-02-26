@@ -40,6 +40,8 @@ else
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="shortcut icon" type="image/png" href="images/logo/logo.png"/>
     <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -118,6 +120,12 @@ else
             margin-bottom:4%;
         }
 
+        #table_monuments{
+            padding: 2%;
+            border-radius: 3px;
+            background-color: #ffffffc4;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -127,6 +135,7 @@ else
 </head>
 
 <body>
+    <div id="app">
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -138,59 +147,93 @@ else
        </div>
        <div class="row">
             <div class="col p-0">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: navy;">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span><svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-list text-light" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                        </svg></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <ul class="navbar-nav list-inline text-center mx-auto justify-content-center">
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="index.php">Inici</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
-                    </li>
-                    <!--<li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_allotjaments_admin.php">Allotjaments</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
-                    </li>-->
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="#">Comandes</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="log_register/session_exit.php">Sortir</a>
-                    </li>
-                    </ul>
-                </div>
-            </nav>
+            <nav class="navbar navbar-expand-sm justify-content-center" style="background-color: navy;">
+                  <ul class="navbar-nav">
+                      <li class="nav-item"><a class="nav-link" href="profile_admin.php">Perfil</a></li>
+                      <li class="nav-item"><a class="nav-link" href="profile_allotjaments_admin.php">Allotjaments</a></li>
+                      <li class="nav-item"><a class="nav-link" href="profile_monuments_admin.php">Monuments</a></li>
+                      <li class="nav-item"><a class="nav-link" href="profile_visites_admin.php">Visites</a></li>
+                      <li class="nav-item"><a class="nav-link" href="log_register/session_exit.php">Sortir</a></li>
+                  </ul>
+              </nav>
             </div>
        </div>
-       <div class="row" id="perfil_info">
-            <div class="col-md-6">
-              <p class="text-center" id="titol_info"><b>Foto de perfil</b></p>
-              <img class="rounded d-block m-auto" src="images/perfil/perfil.jpg" id="imatge-personal">
-           </div>
-           <div class="col-md-6 text-center" id="desc_user">
-              <p class="text-center" id="titol_info"><b>Descripció usuari:</b></p>
-              <ul class="list-inline mx-auto justify-content-center">
-                  <li class=""><b>Nom:</b> <?php echo $nom; ?></li>
-                  <li class=""><b>Cognom:</b> <?php echo $cognom; ?></li>
-                  <li class=""><b>Username:</b> <?php echo $user; ?></li>
-                  <li class=""><b>Email:</b> <?php echo $mail; ?></li>
-                  <li class="mt-3"><a href="profile_edit.php" class="btn btn-primary">Modificar</a> <a href="perfil/perfil_eliminar.php?id='<?php echo $id; ?>'" class="btn btn-primary">Eliminar</a></li>
-              </ul>
+       <div class="div-spacer"></div>
+       <div class="div-spacer"></div>
+       <div class="row">
+           <div class="col-12">
+               <h2 class="titol_destacats text-center w-75"><span><b>Dades Allotjaments</b></span></h2>
            </div>
        </div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+       <div class="row">
+           <div class="col-12">
+           <table class="table table-responsive-sm table-hover" id="table_monuments">
+            <thead>
+                <tr>
+                <th scope="col" class="text-center">id_allotjament</th>
+                <th scope="col" class="text-center">Nom</th>
+                <th scope="col" class="text-center">Modificar</th>
+                <th scope="col" class="text-center">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="carregat" v-for="allotjament in allotjaments">
+                <th scope="row" class="text-center">{{ allotjament.id_allotjament }}</th>
+                <td class="text-center">{{ allotjament.nom_allotjament }}</td>
+                <td class="text-center"><a  :href="''"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                    </svg></a>
+                </td>
+                <td class="text-center"><a  :href="'json_allotjament/dades_allotjament.php?eliminarid=' + allotjament.id_allotjament"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg></a>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="#">Afegir</a>
+                </div>
+           </div>
+       </div> 
     </div>
+    <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
    <?php include('header_footer/footer.php'); ?>
+</div>
 
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                allotjaments: [],
+                carregat: false,
+            },
+            methods:{
+                dadesAllotjament(){
+                    axios.get("json_allotjament/dades_allotjament.php")
+                    .then(res=>{
+                        console.log(res.data)
+                        this.allotjaments = res.data
+                        this.carregat = true
+                    })
+                }
+            },
+            mounted(){
+            this.dadesAllotjament()
+        },
+       
+        })
+    </script>
+    
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

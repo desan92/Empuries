@@ -11,13 +11,13 @@
 
                 <ul class="list-unstyled mb-0 text-light" id="list_footer">
                   <li>
-                    <a href="#" class="text-light">Excursions Programadas</a>
+                    <a href="visites.php" class="text-light">Excursions Programadas</a>
                   </li>
                   <li>
-                    <a href="#" class="text-light">Monuments</a>
+                    <a href="monuments.php" class="text-light">Monuments</a>
                   </li>
                   <li>
-                    <a href="#" class="text-light">Allotjaments</a>
+                    <a href="allotjaments.php" class="text-light">Allotjaments</a>
                   </li>
                   <!--<li>
                     <a href="#" class="text-light"></a>

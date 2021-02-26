@@ -40,7 +40,8 @@
         }
 
         .container_log{
-            padding: 5%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
 
     </style>

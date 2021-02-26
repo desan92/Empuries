@@ -1,31 +1,28 @@
 
+    /*
+    funcio amb la que es crea la cookie un cop cargada la pagina es podra permetre o denegar
+    les cookies un cop aqui es cridara aquesta funcio que creara la cookie apartir del
+    document.cookie.match.
+    */
     function getCookie(name) 
     {
       var b = document.cookie.match('(^|[^;]+)\\s*' + name + '\\s*=\\s*([^;]+)');
       return b ? b.pop() : '';
     }
 
-    function addAnalytics() {
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() 
-      {
-         dataLayer.push(arguments);
-      }
-
-      gtag('js', new Date());
-      gtag('config', 'UA-XXXXXXXX-X');
-    }
-
+    /*
+    esdeveniment que s'executa quan es carrega la pagina. On es crida tant la funcio que crea
+    la cookie com l'element visual d'aquesta.
+    */
     window.addEventListener("load", function () {
 
-    const cookieConsent = getCookie('emporium_cookie');
+    getCookie('emporium_cookie');
 
-    if (cookieConsent === 'allow' || cookieConsent === '') 
-    {
-      addAnalytics();
-    }
-
+    /*
+    part visual de la cookie, utilitzant l'element cookieconsent, es genera el contingut 
+    que sera present en totes les pagines i que els usuaris que entrin a la pagina podran 
+    o no acceptar les cookies.  
+    */
     window.cookieconsent.initialise({
       "palette": {
         "popup": {
@@ -49,7 +46,8 @@
         "name": "emporium_cookie",
         //"domain": "emporium.com"
       }, 
-      onStatusChange: function (status, chosenBefore) 
+      //funcio que s'executa quan la cookie canvia d'estatus i pasa de allow a deny o a l'inversa.
+      onStatusChange: function () 
       {
         location.reload();
       }

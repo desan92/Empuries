@@ -146,8 +146,8 @@ footer{
 
 .user a{
     text-decoration: none;
-    padding: 15px;
-    font-size: 14px;
+    padding: 5px;
+    font-size: 12px;
     color: white;
 }
 
@@ -171,7 +171,6 @@ footer{
 .llista ul li:hover{
     text-decoration: none;
     background-color: #0000f0;
-    border-bottom: 4px solid white;
 }
 
 #btn_intro #col_btn_intro{
@@ -266,6 +265,17 @@ footer{
 }
 }
 
+@media all and (max-width: 460px){
+    .llista ul li{
+        margin-left: 80px;
+    }
+    .div_img img{
+        width: 85px;
+        height: 85px;
+    }
+
+}
+
 #title_destacats{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: navy;
@@ -279,6 +289,16 @@ footer{
     margin-right: auto;
     margin-top: 25px;
     background-color: #ffffffc4;
+    transition: transform .2s;
+}
+
+#block_info:hover {
+    transform: scale(1.025);
+}
+
+#block_info a {
+    text-decoration: none;
+    color: black;
 }
 
 #img_info_destacats{
@@ -428,4 +448,9 @@ a{
 #text_img_turistiques a{
     text-decoration: none;
     color: navy;
+}
+
+#visites{
+    display: flex;
+    flex-wrap: wrap;
 }

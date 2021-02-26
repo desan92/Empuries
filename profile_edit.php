@@ -113,19 +113,42 @@ else
               </div>
            </div>
        </div>
-       <div class="row">
-            <div class="col p-0">
-            <nav class="navbar navbar-expand-sm justify-content-center" style="background-color: navy;">
-                  <ul class="navbar-nav">
-                      <li class="nav-item"><a class="nav-link" href="profile_client.php">Perfil</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">link2</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">link3</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">link4</a></li>
-                      <li class="nav-item"><a class="nav-link" href="log_register/session_exit.php">Sortir</a></li>
-                  </ul>
-              </nav>
+       <?php 
+       
+       if($_SESSION["rol"] == "Administrador")
+       {
+           echo "<div class='row'>
+           <div class='col p-0'>
+           <nav class='navbar navbar-expand-sm justify-content-center' style='background-color: navy;'>
+                 <ul class='navbar-nav'>
+                     <li class='nav-item'><a class='nav-link' href='profile_admin.php'>Perfil</a></li>
+                     <li class='nav-item'><a class='nav-link' href='profile_allotjaments_admin.php'>Allotjaments</a></li>
+                     <li class='nav-item'><a class='nav-link' href='profile_monuments_admin.php'>Monuments</a></li>
+                     <li class='nav-item'><a class='nav-link' href='profile_visites_admin.php'>Visites</a></li>
+                     <li class='nav-item'><a class='nav-link' href='log_register/session_exit.php'>Sortir</a></li>
+                 </ul>
+             </nav>
             </div>
-       </div>
+        </div>";
+       }
+       else
+       {
+        echo "<div class='row'>
+        <div class='col p-0'>
+        <nav class='navbar navbar-expand-sm justify-content-center' style='background-color: navy;'>
+              <ul class='navbar-nav'>
+                  <li class='nav-item'><a class='nav-link' href='profile_admin.php'>Perfil</a></li>
+                  <li class='nav-item'><a class='nav-link' href='#'>link2</a></li>
+                  <li class='nav-item'><a class='nav-link' href='#'>link3</a></li>
+                  <li class='nav-item'><a class='nav-link' href='#'>link4</a></li>
+                  <li class='nav-item'><a class='nav-link' href='log_register/session_exit.php'>Sortir</a></li>
+              </ul>
+          </nav>
+         </div>
+     </div>";
+       }
+       
+       ?>
        <div class="row mt-3 mb-3">
             <div class="col-md-3"></div>
             <div class="col-md-6 form_contacte">

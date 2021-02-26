@@ -66,7 +66,7 @@
 
         .recuadre_personal{
             border-radius: 5px;
-            height: 600px;
+            height: 500px;
             padding: 25px;
             background-color: #ffffffc4;
             margin-top:4%;
@@ -102,7 +102,7 @@
                 <p><b>Estudis:</b> Graduat en Historia (UAB).</p>
                 <p><b>Especialitat:</b> Master en Arqueologia Clasica (UAB) i
                 Master en Historia de l'Art (UAB).</p>
-                <p><b>Funcio:</b> </p>
+                <p><b>Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
             </div>
             <div class="col-md-2 col-sm-12"></div>
             <div class="col-md-5 col-sm-12 recuadre_personal">
@@ -111,7 +111,7 @@
                 <p><b>Cognom:</b> Vergés Marés</p>
                 <p><b>Estudis:</b> Graduada en Historia (UAB).</p>
                 <p><b>Especialitat:</b> Master de Mediterrani Antic (UAB).</p>
-                <p><b>Funcio:</b> </p>
+                <p><b>Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
             </div>
         </div>
    </div>

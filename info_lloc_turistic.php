@@ -75,7 +75,8 @@
         }
 
         .container_info_turistica{
-            padding: 5%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
 
         #desc_allotjament{
@@ -96,6 +97,16 @@
 
         #imatge{
             text-align: center;
+        }
+    }
+
+    @media all and (max-width: 460px){
+        #imatge_lloc_turistic{
+            width: 250px;
+        }
+
+        #imatge_map{
+            width: 250px;
         }
     }
     </style>
@@ -161,8 +172,7 @@
     var vm = new Vue({
         el: "#app",
         data: {
-            a: '2',
-            info_lloc_turistic: null,
+            info_lloc_turistic: [],
             carregat: false,
             id: ''
         },
@@ -170,7 +180,7 @@
             dadesLlocTuristic(){
                 axios.get("json_info_turistica/dades_info_turistica.php?id=" + this.id)
                 .then(res=>{
-                    console.log(res.data)
+                    //console.log(res.data)
                     this.info_lloc_turistic = res.data
                     this.carregat = true
 
@@ -194,12 +204,14 @@
         var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
         var marker = new google.maps.Marker({position: coordenades, map: map});
     }
+    
 </script>
+        
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAs6i1mssHmgMuKSeGkjqZa-N3nYYSnrY&callback=initMap&libraries=&v=weekly" async defer></script>
         <script src="js/whatsapp/animation_whatsapp_top.js"></script>
         <script src="js/cookies/cookies.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAs6i1mssHmgMuKSeGkjqZa-N3nYYSnrY&callback=initMap" type="text/javascript"></script>
         <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>
         <script src="bootstrap-4.5.0-dist/js/popper.min.js"></script>
         <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-</body>
 </html>
