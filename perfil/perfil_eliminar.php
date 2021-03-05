@@ -11,28 +11,20 @@ if(isset($_GET["id"]) && !empty($_GET["id"]))
     $conexio = new Connexio();
     $conn = $conexio->Conect_bbdd();   
     
-    if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
+    if($_SESSION["id"] && $_SESSION["id"] == $id)
     {
         Borrar($id, $conn);
-        
-    }    
+    }
     else
     {
-        if($_SESSION["id"] && $_SESSION["id"] == $id)
-        {
-            Borrar($id, $conn);
-        }
-        else
-        {
-            echo "ni adnim ni client";//ERROR 404 PAGE
-        }
+        header("Location: ../index.php");//misstage error.
     }
     
     
 }
 else
 {
-    echo "error";//ERROR 404 PAGE
+    header("Location: ../index.php");
 }
 
 ?>

@@ -136,7 +136,7 @@
             },
             methods:{
                 dadesTuristiques(){
-                    axios.get("json_info_turistica/dades_info_turistica.php")
+                    axios.get("JSON/json_info_turistica/dades_info_turistica.php")
                     .then(res=>{
                         console.log(res.data)
                         this.info_turistica = res.data

@@ -230,7 +230,7 @@
             },
             methods:{
                 dadesAllotjament(){
-                    axios.get("json_allotjament/dades_allotjament.php?city=" + this.codi)
+                    axios.get("JSON/json_allotjament/dades_allotjament.php?city=" + this.codi)
                     .then(res=>{
                     console.log(res.data)
                     this.allotjaments = res.data

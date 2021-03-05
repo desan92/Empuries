@@ -152,14 +152,8 @@ else
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
                     </li>
-                    <!--<li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_allotjaments_admin.php">Allotjaments</a>
-                    </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
-                    </li>-->
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="#">Comandes</a>
+                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
                     </li>
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>

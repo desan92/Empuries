@@ -1,20 +1,34 @@
 <?php
 
+//conexio a la bbdd
 include("conexio.php");
 
-$dades = json_decode(file_get_contents("../json_info_turistica/informacio_turistica.json"));
+//es pasa tota l'informació que conte el fitxer JSON 
+
+$dades = json_decode(file_get_contents("../JSON/json_info_turistica/informacio_turistica.json"));
 
 $dades = json_decode(json_encode($dades), true);
-//print_r($dades);
 
+/*
+variable on es guardaran las dades pasades del fitxer informacio_turistica 
+i on posteriorment es posaran els valors a l'insert per pasar l'informació a la bbdd.
+*/
 $variable_insert = "";
 
+//Es crear un objecte per crear la connexio a la bbdd
 $conexio = new Connexio();
 $conn = $conexio->Conect_bbdd();
 
+//si la connexio es correcte es dura a terme l'insercio.
 if($conn)
 {
     echo json_encode("Conectat a la bbdd") . "<br>";
+
+    /*
+    for on es pasara el contingut del archiu informacio_turistica i es pasara fila per fila
+    les seves varibles si en te o tractades a $variable_insert on posteriorment es pasara
+    al values del insert.
+    */
 
     for($i = 0; $i<sizeof($dades); $i++)
     {
@@ -45,11 +59,14 @@ if($conn)
         $variable_insert = $variable_insert . "(\"$nom\", \"$descripcio\", \"$direccio\", \"$poblacio\", $telefon, \"$latitud\", 
                                                 \"$longitud\", \"$horari\", \"$preu\", \"$web\", \"$email\", \"$imatge\"),";
     }
+    //es treu la ultima coma que sobra a $variable_insert.
     $variable_insert = substr($variable_insert, 0, -1);
 /*
     $insert = "INSERT INTO `info_turistica`(`nom_turisme`, `descripcio`, `direccio`, `poblacio`, `telefon`, `latitud`, `longitud`, `horari`, `preu`, `pagina_web`, `email`, `imatge`) 
-               VALUES" . $variable_insert;*/
+               VALUES" . $variable_insert;
+*/
 
+//si la query es correcte s'insertara a la bbdd si no es mostrara l'error.
     if (mysqli_query($conn, $insert)) 
     {
         echo "Ok, Insert  is in bbdd";

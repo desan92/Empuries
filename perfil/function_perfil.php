@@ -92,14 +92,7 @@ function Borrar($id, $conn)
 
     if(mysqli_query($conn, $sql))
     {
-        if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
-        {
-            header("Location: ../profile_admin.php?usuari=borrat");
-        }
-        else
-        {
-            header("Location: ../log_register/session_exit.php");
-        }
+        header("Location: ../log_register/session_exit.php");
     }
     else
     {

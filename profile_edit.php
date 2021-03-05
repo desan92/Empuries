@@ -119,40 +119,74 @@ else
        {
            echo "<div class='row'>
            <div class='col p-0'>
-           <nav class='navbar navbar-expand-sm justify-content-center' style='background-color: navy;'>
-                 <ul class='navbar-nav'>
-                     <li class='nav-item'><a class='nav-link' href='profile_admin.php'>Perfil</a></li>
-                     <li class='nav-item'><a class='nav-link' href='profile_allotjaments_admin.php'>Allotjaments</a></li>
-                     <li class='nav-item'><a class='nav-link' href='profile_monuments_admin.php'>Monuments</a></li>
-                     <li class='nav-item'><a class='nav-link' href='profile_visites_admin.php'>Visites</a></li>
-                     <li class='nav-item'><a class='nav-link' href='log_register/session_exit.php'>Sortir</a></li>
-                 </ul>
-             </nav>
+           <nav class='navbar navbar-expand-lg navbar-light' style='background-color: navy;'>
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false' aria-label='Toggle navigation'>
+                <span><svg width='1.3em' height='1.3em' viewBox='0 0 16 16' class='bi bi-list text-light' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+                            <path fill-rule='evenodd' d='M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'/>
+                        </svg></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                    <ul class='navbar-nav list-inline text-center mx-auto justify-content-center'>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='index.php'>Inici</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='profile_admin.php'>Perfil</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='comandes_admin.php'>Comandes</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='profile_visites_admin.php'>Visites</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='log_register/session_exit.php'>Sortir</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
             </div>
         </div>";
        }
        else
        {
         echo "<div class='row'>
-        <div class='col p-0'>
-        <nav class='navbar navbar-expand-sm justify-content-center' style='background-color: navy;'>
-              <ul class='navbar-nav'>
-                  <li class='nav-item'><a class='nav-link' href='profile_admin.php'>Perfil</a></li>
-                  <li class='nav-item'><a class='nav-link' href='#'>link2</a></li>
-                  <li class='nav-item'><a class='nav-link' href='#'>link3</a></li>
-                  <li class='nav-item'><a class='nav-link' href='#'>link4</a></li>
-                  <li class='nav-item'><a class='nav-link' href='log_register/session_exit.php'>Sortir</a></li>
-              </ul>
-          </nav>
-         </div>
-     </div>";
+           <div class='col p-0'>
+           <nav class='navbar navbar-expand-lg navbar-light' style='background-color: navy;'>
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false' aria-label='Toggle navigation'>
+                <span><svg width='1.3em' height='1.3em' viewBox='0 0 16 16' class='bi bi-list text-light' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+                            <path fill-rule='evenodd' d='M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'/>
+                        </svg></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                    <ul class='navbar-nav list-inline text-center mx-auto justify-content-center'>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='index.php'>Inici</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='profile_client.php'>Perfil</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='comandes_client.php'>Comandes</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='cistella_compra.php'>Cistella</a>
+                    </li>
+                    <li class='nav-item list-inline-item'>
+                        <a class='nav-link text-light' href='log_register/session_exit.php'>Sortir</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+            </div>
+        </div>";
        }
        
        ?>
        <div class="row mt-3 mb-3">
             <div class="col-md-3"></div>
             <div class="col-md-6 form_contacte">
-            <form action="perfil/perfil_modificar.php?id='<?php echo $id; ?>'" method="POST">
+            <form action="perfil/perfil_modificar.php" method="POST">
                 <div class="form-group">
                     <label for="exampleInputNom">Nom</label>
                     <input type="text" name="nom" value="<?php echo $nom; ?>" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>

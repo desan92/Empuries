@@ -113,7 +113,8 @@
                         <div>
                             <h4 class="text-center" id="title_destacats">{{ visita.nom_producte }}</h4>
                             <p class="text-justify" id="desc_visita">{{ visita.intro_descripcio }}</p>
-                            <p class="text-left text-danger" id="desc_visita">Preu: {{ visita.preu }}</p>
+                            <p v-if="visita.preu > 0" class="text-left text-danger">Preu: {{ visita.preu }}€</p>
+                            <p v-else="visita.preu == 0" class="text-left text-danger">Preu: Gratuït</p>
                         </div>
                     </div>
                     </a>
@@ -170,7 +171,7 @@
                 },
                 methods:{
                     dadesTurisme(){
-                        axios.get("json_info_turistica/dades_info_turistica.php?destacat=1")
+                        axios.get("JSON/json_info_turistica/dades_info_turistica.php?destacat=1")
                         .then(res=>{
                         this.info_turistica = res.data
                         this.carregat = true
@@ -178,7 +179,7 @@
                         })
                     },
                     dadesVisita(){
-                        axios.get("json_visites/dades_visites.php?destacat=1")
+                        axios.get("JSON/json_visites/dades_visites.php?destacat=1")
                         .then(res=>{
                         this.info_visita = res.data
                         this.carregat = true

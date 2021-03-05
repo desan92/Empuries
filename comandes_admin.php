@@ -147,22 +147,39 @@ else
        </div>
        <div class="row">
             <div class="col p-0">
-            <nav class="navbar navbar-expand-sm justify-content-center" style="background-color: navy;">
-                  <ul class="navbar-nav">
-                      <li class="nav-item"><a class="nav-link" href="profile_admin.php">Perfil</a></li>
-                      <li class="nav-item"><a class="nav-link" href="profile_allotjaments_admin.php">Allotjaments</a></li>
-                      <li class="nav-item"><a class="nav-link" href="profile_monuments_admin.php">Monuments</a></li>
-                      <li class="nav-item"><a class="nav-link" href="profile_visites_admin.php">Visites</a></li>
-                      <li class="nav-item"><a class="nav-link" href="log_register/session_exit.php">Sortir</a></li>
-                  </ul>
-              </nav>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: navy;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span><svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-list text-light" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav list-inline text-center mx-auto justify-content-center">
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link text-light" href="index.php">Inici</a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link text-light" href="log_register/session_exit.php">Sortir</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
             </div>
        </div>
        <div class="div-spacer"></div>
        <div class="div-spacer"></div>
        <div class="row">
            <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Allotjaments</b></span></h2>
+               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
            </div>
        </div>
         <div class="div-spacer"></div>
@@ -173,36 +190,25 @@ else
            <table class="table table-responsive-sm table-hover" id="table_monuments">
             <thead>
                 <tr>
-                <th scope="col" class="text-center">id_allotjament</th>
+                <th scope="col" class="text-center">id_visita</th>
                 <th scope="col" class="text-center">Nom</th>
-                <th scope="col" class="text-center">Modificar</th>
-                <th scope="col" class="text-center">Eliminar</th>
+                <th scope="col" class="text-center">Comandes</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-if="carregat" v-for="allotjament in allotjaments">
-                <th scope="row" class="text-center">{{ allotjament.id_allotjament }}</th>
-                <td class="text-center">{{ allotjament.nom_allotjament }}</td>
-                <td class="text-center"><a  :href="''"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                    </svg></a>
-                </td>
-                <td class="text-center"><a  :href="'json_allotjament/dades_allotjament.php?eliminarid=' + allotjament.id_allotjament"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                    </svg></a>
+                <tr v-if="carregat" v-for="visita in info_visita">
+                <th scope="row" class="text-center">{{ visita.id_producte }}</th>
+                <td class="text-center">{{ visita.nom_producte }}</td>
+                <td class="text-center"><a  :href="'comandes_producte_admin.php?comandes_visita=' + visita.id_producte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                </svg></a>
                 </td>
                 </tr>
             </tbody>
             </table>
            </div>
        </div>
-       <div class="row">
-           <div class="col">
-                <div class="text-right">
-                    <a class="btn btn-primary" href="#">Afegir</a>
-                </div>
-           </div>
-       </div> 
     </div>
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>
@@ -211,25 +217,25 @@ else
 </div>
 
     <script>
-        var vm = new Vue({
-            el: "#app",
-            data: {
-                allotjaments: [],
-                carregat: false,
-            },
-            methods:{
-                dadesAllotjament(){
-                    axios.get("json_allotjament/dades_allotjament.php")
-                    .then(res=>{
-                        console.log(res.data)
-                        this.allotjaments = res.data
-                        this.carregat = true
-                    })
-                }
-            },
-            mounted(){
-            this.dadesAllotjament()
+        var vm = new Vue ({
+        el: "#app",
+        data:{
+            info_visita: null,
+            carregat: false
         },
+        methods:{
+            dadesVisita(){
+                axios.get("JSON/json_visites/dades_visites.php")
+                .then(res=>{
+                   this.info_visita = res.data
+				   this.carregat = true
+                   
+                })
+            }
+        },
+        mounted(){
+            this.dadesVisita()
+        }
        
         })
     </script>

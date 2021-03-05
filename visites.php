@@ -89,7 +89,8 @@
                         <div>
                             <h4 class="text-center" id="title_destacats">{{ visita.nom_producte }}</h4>
                             <p class="text-justify" style="font-size: 15px;">{{ visita.intro_descripcio }}</p>
-                            <p class="text-left text-danger">Preu: {{ visita.preu }}</p>
+                            <p v-if="visita.preu > 0" class="text-left text-danger">Preu: {{ visita.preu }}€</p>
+                            <p v-else="visita.preu == 0" class="text-left text-danger">Preu: Gratuït</p>
                         </div>
                     </div>
                 </a>
@@ -113,7 +114,7 @@
         },
         methods:{
             dadesVisita(){
-                axios.get("json_visites/dades_visites.php")
+                axios.get("JSON/json_visites/dades_visites.php")
                 .then(res=>{
                    this.info_visita = res.data
 				   this.carregat = true

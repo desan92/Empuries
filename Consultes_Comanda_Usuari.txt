@@ -1,0 +1,37 @@
+
+COMANDA USUARI:
+
+1 PAS:
+
+SELECT *
+FROM comanda 
+WHERE id_usuari = 2
+
+2 PAS:
+
+SELECT `c1`.*, `u1`.`username`, `d1`.*
+FROM `comanda` c1
+LEFT JOIN `informacio_usuari` u1 ON `c1`.`id_usuari` = `u1`.`id_usuari`
+LEFT JOIN `detalls_comanda` d1 ON `c1`.`id_comanda` = `d1`.`id_comanda`
+WHERE c1.id_usuari = 2;
+
+
+COMANDA ADMINISTRADOR:
+
+SELECT dc1.*, c1.*, u1.mail, u1.nom_usuari, u1.cognom_usuari
+FROM detalls_comanda dc1
+LEFT JOIN productes_botiga p1 ON dc1.id_producte = p1.id_producte
+LEFT JOIN comanda c1 ON dc1.id_comanda = c1.id_comanda
+LEFT JOIN informacio_usuari u1 ON c1.id_usuari = u1.id_usuari
+WHERE dc1.id_producte = 5;
+
+
+TAULA COMANDA
+INSERT INTO `comanda`(`status_comanda`, `preu_final`, `id_usuari`) 
+VALUES ('completed',30,4), ('completed',50,8);
+
+TAULA DETALLS_COMANDA:
+INSERT INTO `detalls_comanda`(`nom_producte`, `preu_producte`, `preu_total_producte`, `quantitat_producte`, `id_producte`, `id_comanda`) 
+VALUES ('vilafant',10,30,3,5,4), ('vilafant',10,50,5,5,5);
+
+

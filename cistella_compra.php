@@ -5,7 +5,7 @@ if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
     //$rol = str_replace("<br>", '', $rol);;
-    if(!empty($rol) && $rol != "Administrador")
+    if(!empty($rol) && $rol != "Client")
     {
         header("Location: index.php");
     }
@@ -33,7 +33,6 @@ else
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -94,30 +93,9 @@ else
             justify-content: center;
             text-align: center;
         }
-
-        #perfil_info{
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-
-        #titol_info{
-            font-size: 21px;
-        }
-
-        #imatge-personal{
-            height: 150px;
-            width: 150px;
-            border: 5px solid navy;
-            text-align: center;
-        }
-
-        .recuadre_personal{
-            border-radius: 5px;
-            height: 600px;
-            padding: 25px;
-            background-color: #ffffffc4;
-            margin-top:4%;
-            margin-bottom:4%;
+        #visites{
+            display: flex;
+            flex-wrap: wrap;
         }
 
         #table_monuments{
@@ -126,22 +104,20 @@ else
             background-color: #ffffffc4;
         }
 
-        @media all and (max-width: 768px){
-            #desc_user{
-                margin-top: 25px;
-            }
-        }
+
+
+
     </style>
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
-           <div class="col p-0">
+       <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Cistella Compra<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -159,13 +135,13 @@ else
                         <a class="nav-link text-light" href="index.php">Inici</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
+                        <a class="nav-link text-light" href="profile_client.php">Perfil</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
+                        <a class="nav-link text-light" href="comandes_client.php">Comandes</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
+                        <a class="nav-link text-light" href="cistella_compra.php">Cistella</a>
                     </li>
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="log_register/session_exit.php">Sortir</a>
@@ -174,83 +150,102 @@ else
                 </div>
             </nav>
             </div>
-       </div>
-       <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
-           </div>
-       </div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-           <table class="table table-responsive-sm table-hover" id="table_monuments">
-            <thead>
-                <tr>
-                <th scope="col" class="text-center">id_visita</th>
-                <th scope="col" class="text-center">Nom</th>
-                <th scope="col" class="text-center">Modificar</th>
-                <th scope="col" class="text-center">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-if="carregat" v-for="visita in info_visita">
-                <th scope="row" class="text-center">{{ visita.id_producte }}</th>
-                <td class="text-center">{{ visita.nom_producte }}</td>
-                <td class="text-center"><a  :href="'profile_edit_visites.php?id=' + visita.id_producte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                    </svg></a>
-                </td>
-                <td class="text-center"><a  :href="'JSON/json_visites/dades_visites.php?eliminarid=' + visita.id_producte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                    </svg></a>
-                </td>
-                </tr>
-            </tbody>
-            </table>
-           </div>
-       </div>
-       <div class="row">
-           <div class="col">
-                <div class="text-right">
-                    <a class="btn btn-primary" href="profile_add_visites.php">Afegir</a>
+       </div><br>
+        <div class="row">
+            <div class="col-12">
+            <div class="container pt-3" style="background-color: #ffffffc4;">
+                <!-- Alert-->
+                <div v-if="!cistella.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>&nbsp;&nbsp;No hi ha items a la cistella de compra.</div>
+                <!-- Shopping Cart-->
+                <div class="table-responsive shopping-cart">
+                    <table  v-if="cistella.length" class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom Producte</th>
+                                <th class="text-center">Quantitat</th>
+                                <th class="text-center">Afegir</th>
+                                <th class="text-center">Treure</th>
+                                <th class="text-center">Total Producte</th>
+                                <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="cistella/items_cistella.php?all_items=true">Netejar cistella</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-if="carregat" v-for="cistella in cistella">
+                                <td>
+                                    <div class="product-item">
+                                        <a class="product-thumb" :href="'info_visita.php?id=' + cistella.id"><img :src="'images/img_visites/' + cistella.imatge" alt="Product"></a>
+                                        <div class="product-info">
+                                            <h4 class="product-title"><a :href="'info_visita.php?id=' + cistella.id">{{ cistella.nom }}</a></h4>
+                                            <span><em>Preu:</em> {{ cistella.preu }}€</span><!--<span><em>Color:</em> Dark Blue</span>-->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center text-lg text-medium">{{ cistella.quantitat }}</td>
+                                <td class="text-center text-lg text-medium"><a  :href="'cistella/items_cistella.php?add=1&id=' + cistella.id"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg></a></td>
+                                <td class="text-center text-lg text-medium"><a  :href="'cistella/items_cistella.php?substract=1&id=' + cistella.id"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg></a></td>
+                                <td class="text-center text-lg text-medium">{{ cistella.total_producte }}€</td>
+                                <td class="text-center"><a class="remove-from-cart" :href="'cistella/items_cistella.php?item=' + cistella.id" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-           </div>
-       </div> 
+                <div  v-if="cistella.length" class="shopping-cart-footer">
+                    <div class="column text-lg">Total: <span class="text-medium">{{ total }}€</span></div>
+                </div>
+                <div  v-if="cistella.length" class="shopping-cart-footer">
+                    <div class="column"><a class="btn btn-outline-secondary" href="visites.php"><i class="icon-arrow-left"></i>&nbsp;Tornar a visites</a></div>
+                    <div class="column"><a class="btn btn-success" href="finalitzar_compra.php">Finalitzar compra</a></div>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="div-spacer"></div>
+ 
+    
+    
+   <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <?php include('header_footer/footer.php'); ?>
 </div>
 
     <script>
-        var vm = new Vue ({
+        var vm = new Vue({
         el: "#app",
-        data:{
-            info_visita: null,
-            carregat: false
+        data: {
+            cistella: [],
+            options_cistella: [],
+            carregat: false,
+            id: '', 
+            count: 0, 
+            total: ''
         },
         methods:{
-            dadesVisita(){
-                axios.get("JSON/json_visites/dades_visites.php")
+            dadesLlocTuristic(){
+                axios.get("cistella/visualitzar_session.php")
                 .then(res=>{
-                   this.info_visita = res.data
-				   this.carregat = true
-                   
+                    this.cistella = res.data
+                    this.carregat = true
+                    console.log(this.cistella)
+                    
+                    this.total = this.cistella.reduce((sum, curr) => sum + curr.total_producte, 0);
                 })
             }
         },
         mounted(){
-            this.dadesVisita()
+            this.dadesLlocTuristic()
         }
-       
-        })
-    </script>
     
+    })
+
+    </script>
+
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

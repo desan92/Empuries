@@ -14,7 +14,9 @@ if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
 
             $nom_visita = $_POST["nom_visita"];
 
-            if($_POST["preu"] == 0)
+            $preu = preg_replace('([^A-Za-z0-9])', '', $texto);
+            echo $preu;
+            /*if($_POST["preu"] == 0)
             {
                 $preu = "Gratuït";
             }
@@ -78,7 +80,7 @@ if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
                         header("Location: ../profile_edit_visites.php?insert=error");
                     }
                 }
-            }
+            }*/
 
         }
         else

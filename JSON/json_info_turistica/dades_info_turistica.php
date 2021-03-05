@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../bbdd/conexio.php");
+include("../../bbdd/conexio.php");
 
 $conn = mysqli_connect("localhost", "root", "", "empuries");
 
@@ -43,26 +43,6 @@ $turisme = [];
 				echo json_encode($turisme);
 			}
         }
-        /*elseif (isset($_GET["eliminarid"])){
-            
-            $id = $_GET["eliminarid"];
-            if(isset($_SESSION["rol"]) && $_SESSION["rol"] == "Administrador")
-            {
-                $sql = "DELETE FROM info_turistica WHERE id_turisme =" . $id;
-                if(mysqli_query($conn, $sql))
-                {
-                    header("Location: ../profile_monuments_admin.php");
-                }
-                else
-                {
-                    header("Location: ../profile_monuments_admin.php?borrar=error");
-                }
-            }
-            else
-            {
-                header("Location: ../index.php");//ERROR 404 PAGE
-            }			
-		}*/
         else
         {
             $sql = "SELECT `id_turisme`, `nom_turisme`, `imatge` FROM `info_turistica`;";

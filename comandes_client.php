@@ -5,7 +5,7 @@ if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
     //$rol = str_replace("<br>", '', $rol);;
-    if(!empty($rol) && $rol != "Administrador")
+    if(!empty($rol) && $rol != "Client")
     {
         header("Location: index.php");
     }
@@ -33,7 +33,6 @@ else
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -51,6 +50,8 @@ else
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <script src="https://www.paypal.com/sdk/js?client-id=AXxjs0rLFGBbancpBQeJzkrmASRTFe4VyiEjDq5n97zoR1oHw5oVwt2wLVIkMjG5UQYxSZIStaKJKF_X&currency=EUR"> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
+    </script>
     <title>Emporium</title>
     <style>
 
@@ -94,30 +95,9 @@ else
             justify-content: center;
             text-align: center;
         }
-
-        #perfil_info{
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-
-        #titol_info{
-            font-size: 21px;
-        }
-
-        #imatge-personal{
-            height: 150px;
-            width: 150px;
-            border: 5px solid navy;
-            text-align: center;
-        }
-
-        .recuadre_personal{
-            border-radius: 5px;
-            height: 600px;
-            padding: 25px;
-            background-color: #ffffffc4;
-            margin-top:4%;
-            margin-bottom:4%;
+        #visites{
+            display: flex;
+            flex-wrap: wrap;
         }
 
         #table_monuments{
@@ -126,22 +106,17 @@ else
             background-color: #ffffffc4;
         }
 
-        @media all and (max-width: 768px){
-            #desc_user{
-                margin-top: 25px;
-            }
-        }
     </style>
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
-           <div class="col p-0">
+       <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Comandes<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -159,13 +134,13 @@ else
                         <a class="nav-link text-light" href="index.php">Inici</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
+                        <a class="nav-link text-light" href="profile_client.php">Perfil</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
+                        <a class="nav-link text-light" href="comandes_client.php">Comandes</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
+                        <a class="nav-link text-light" href="cistella_compra.php">Cistella</a>
                     </li>
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="log_register/session_exit.php">Sortir</a>
@@ -174,83 +149,108 @@ else
                 </div>
             </nav>
             </div>
-       </div>
-       <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
-           </div>
-       </div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-           <table class="table table-responsive-sm table-hover" id="table_monuments">
-            <thead>
-                <tr>
-                <th scope="col" class="text-center">id_visita</th>
-                <th scope="col" class="text-center">Nom</th>
-                <th scope="col" class="text-center">Modificar</th>
-                <th scope="col" class="text-center">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-if="carregat" v-for="visita in info_visita">
-                <th scope="row" class="text-center">{{ visita.id_producte }}</th>
-                <td class="text-center">{{ visita.nom_producte }}</td>
-                <td class="text-center"><a  :href="'profile_edit_visites.php?id=' + visita.id_producte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                    </svg></a>
-                </td>
-                <td class="text-center"><a  :href="'JSON/json_visites/dades_visites.php?eliminarid=' + visita.id_producte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                    </svg></a>
-                </td>
-                </tr>
-            </tbody>
-            </table>
-           </div>
-       </div>
-       <div class="row">
+       </div><br>
+       
+       <div class="row mt-5">
            <div class="col">
-                <div class="text-right">
-                    <a class="btn btn-primary" href="profile_add_visites.php">Afegir</a>
+           <div class="container p-3" style="background-color: #ffffffc4;">
+           <div v-if="!comandes.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>&nbsp;&nbsp;No hi ha cap comanda realitzada.</div>
+           <div v-if="comandes.length" class="accordion" id="accordionExample">
+            <div v-for="comanda in comandes" class="card">
+                <div  class="card-header" id="headingOne" style="background-color: navy;">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" :data-target="'#collapseOne' + comanda.id_comanda" aria-expanded="true" aria-controls="collapseOne" style="background-color: navy; color: white;">
+                        Comanda Emporium: {{ comanda.id_comanda }} <span class="float-right">Total: {{ comanda.preu_final }}€</span>
+                    </button>
+                </h2>
                 </div>
+
+                <div v-bind:id="'collapseOne' + comanda.id_comanda" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div v-for="item in items_comandes" v-if="comanda.id_comanda == item.id_comanda" class="card-body" style="background-color: #d1ecf1;">
+                <div class="table-responsive shopping-cart">
+                    <table  class="table">
+                        <tbody>
+                            <tr v-if="carregat">
+                            <thead>
+                                <th>Nom Producte</th>
+                                <th class="text-center float-right">Total Producte</th>
+                                <thead>
+                                <td>
+                                    <div class="product-item">
+                                        <a class="product-thumb"><img v-if="item.imatge_visita != null" :src="'images/img_visites/' + item.imatge_visita" alt="Product"> <img v-else="item.imatge_visita == null" src="images/img_visites/not-found.jpg" alt="Product"></a>
+                                        <div class="product-info">
+                                            <h4 class="product-title"><p>{{ item.nom_producte }}</p></h4>
+                                            <span><em>Preu:</em> {{ item.preu_producte }}€</span>
+                                            <span><em>Quantitat:</em> {{ item.quantitat_producte }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center text-lg text-medium float-right">{{ item.preu_total_producte }}€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
            </div>
-       </div> 
+       </div>
     </div>
-    <div class="div-spacer"></div>
+    </div>
+    
+    
+   <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <?php include('header_footer/footer.php'); ?>
 </div>
 
+
+
     <script>
-        var vm = new Vue ({
+
+        var vm = new Vue({
         el: "#app",
-        data:{
-            info_visita: null,
-            carregat: false
+        data: {
+            comandes: [],
+            items_comandes: [],
+            carregat: false,
+            id: '', 
+            count: 0, 
+            total: ''
         },
         methods:{
-            dadesVisita(){
-                axios.get("JSON/json_visites/dades_visites.php")
+            dadescomandes(){
+                axios.get("cistella/comandes_realitzades.php?comandes=true")
                 .then(res=>{
-                   this.info_visita = res.data
-				   this.carregat = true
-                   
+                    this.comandes = res.data
+                    this.carregat = true
+                    console.log(this.comandes)
+                    
+                })
+            },
+            dadesitemscomandes(){
+                axios.get("cistella/comandes_realitzades.php?items_comandes=true")
+                .then(res=>{
+                    this.items_comandes = res.data
+                    this.carregat = true
+                    console.log(this.items_comandes)
+                    
                 })
             }
         },
         mounted(){
-            this.dadesVisita()
+            this.dadescomandes()
+            this.dadesitemscomandes()
         }
-       
-        })
-    </script>
     
+    })
+
+    </script>
+
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

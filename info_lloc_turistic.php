@@ -127,7 +127,7 @@
     <div class="container_info_turistica">
        <div class="container recuadre_allotjament" v-if="carregat">
         <div class="row mb-4">
-            <p class="text-center text-align-center m-auto" id="titol_monument" v_if="carregat">{{ info_lloc_turistic.nom_turisme }}</p>
+            <p class="text-center text-align-center m-auto" id="titol_monument" v_if="carregat" style="color:navy;">{{ info_lloc_turistic.nom_turisme }}</p>
         </div>
         <div class="row mt-5 m-auto" v-if="carregat">
                 <div class="col-md-5 col-sm-12 text-align-center justify-content-center m-auto" id="imatge">
@@ -139,7 +139,7 @@
                     <p class="text-center mt-3 align-middle"><b>Horari:</b></p><p class="text-center align-middle" v-html="info_lloc_turistic.horari"></p></p>
                     <p class="text-center align-middle"><b>Preu:</b> {{ info_lloc_turistic.preu }}</p>
                 </div>
-            </div>
+        </div>
             <br>
             <div class="row">
                 <div class="col-md-12 col-sm-12 m-auto mt-3" id="desc_allotjament" v-if="carregat">
@@ -178,7 +178,7 @@
         },
         methods:{
             dadesLlocTuristic(){
-                axios.get("json_info_turistica/dades_info_turistica.php?id=" + this.id)
+                axios.get("JSON/json_info_turistica/dades_info_turistica.php?id=" + this.id)
                 .then(res=>{
                     //console.log(res.data)
                     this.info_lloc_turistic = res.data
@@ -206,9 +206,9 @@
     }
     
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAs6i1mssHmgMuKSeGkjqZa-N3nYYSnrY&callback=initMap" type="text/javascript"></script>
         
 </body>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAs6i1mssHmgMuKSeGkjqZa-N3nYYSnrY&callback=initMap&libraries=&v=weekly" async defer></script>
         <script src="js/whatsapp/animation_whatsapp_top.js"></script>
         <script src="js/cookies/cookies.js"></script>
         <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

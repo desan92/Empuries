@@ -168,7 +168,7 @@ else
                         <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
                     </li>-->
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="#">Comandes</a>
+                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
                     </li>
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
@@ -193,14 +193,14 @@ else
         <div class="div-spacer"></div>
        <div class="row">
            <div class="col">
-           <form action="json_visites/dades_visites.php?add=true" method="POST" enctype="multipart/form-data">
+           <form action="JSON/json_visites/dades_visites.php?add=true" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <input type="text" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
                     </div>
                     <div class="col-md-5">
-                        <input type="number" name="preu" class="form-control mb-2" placeholder="Preu">
+                        <input type="number" step=0.01 name="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
                 </div>

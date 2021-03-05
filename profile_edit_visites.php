@@ -168,7 +168,7 @@ else
                         <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
                     </li>-->
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="#">Comandes</a>
+                        <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
                     </li>
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_visites_admin.php">Visites</a>
@@ -193,14 +193,14 @@ else
         <div class="div-spacer"></div>
        <div class="row">
            <div class="col">
-           <form action="json_visites/dades_visites.php?edit=true" method="POST" enctype="multipart/form-data">
+           <form action="JSON/json_visites/dades_visites.php?edit=true" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <input v-if="carregat" type="hidden" :value="info_visita.id_producte" name="id_visita" class="form-control mb-2">
                     </div>
                     <div class="col-md-5">
-                        <input v-if="carregat" type="hidden" :value="info_visita.places_ocupades" name="places_ocupades" class="form-control mb-2">
+                        <!--<input v-if="carregat" type="hidden" :value="info_visita.places_ocupades" name="places_ocupades" class="form-control mb-2">-->
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -212,7 +212,7 @@ else
                     </div>
                     <div class="col-md-5">
                         <label>Preu visita</label>
-                        <input v-if="carregat" type="text" :value="info_visita.preu" name="preu" class="form-control mb-2" placeholder="Preu">
+                        <input v-if="carregat" type="number" step=0.01 :value="info_visita.preu" name="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -224,7 +224,7 @@ else
                     </div>
                     <div class="col-md-5">
                     <label>Places visita</label>
-                    <input v-if="carregat" type="number" :value="info_visita.places_totals" name="places_totals" class="form-control mb-2" placeholder="Places">
+                    <input v-if="carregat" type="number" :value="info_visita.places" name="places_totals" class="form-control mb-2" placeholder="Places">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -289,7 +289,7 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10 text-right">
-                        <button type="submit" class="btn btn-primary">Afegir</button>
+                        <button type="submit" class="btn btn-primary">Modificar</button>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -312,7 +312,7 @@ else
         },
         methods:{
             dadesVisita(){
-                axios.get("json_visites/dades_visites.php?id="  + this.id)
+                axios.get("JSON/json_visites/dades_visites.php?id="  + this.id)
                 .then(res=>{
                    this.info_visita = res.data
 				   this.carregat = true
