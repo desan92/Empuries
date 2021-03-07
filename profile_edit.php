@@ -95,6 +95,16 @@ else
             margin-bottom:4%;
         }
 
+        #container_perfil_edit{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        #label_modicar_perfil{
+            color: navy;
+            font-weight: 600;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -183,28 +193,35 @@ else
        }
        
        ?>
+       <div class="container">
+           <div id="container_perfil_edit">
+           <div class="row mt-3">
+           <div class="col-12">
+               <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Modificar Perfil</b></span></h2>
+           </div>
+       </div>
        <div class="row mt-3 mb-3">
             <div class="col-md-3"></div>
             <div class="col-md-6 form_contacte">
             <form action="perfil/perfil_modificar.php" method="POST">
                 <div class="form-group">
-                    <label for="exampleInputNom">Nom</label>
+                    <label id="label_modicar_perfil" for="exampleInputNom">Nom</label>
                     <input type="text" name="nom" value="<?php echo $nom; ?>" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputCognom">Cognom</label>
+                    <label id="label_modicar_perfil" for="exampleInputCognom">Cognom</label>
                     <input type="text" name="cognom" value="<?php echo $cognom; ?>" class="form-control" id="exampleInputCognom" aria-describedby="nomHelp" placeholder="Cognom" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                    <label id="label_modicar_perfil" for="exampleInputEmail1">Email</label>
                     <input type="email" name="email" value="<?php echo $mail; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputUser">Usuari</label>
+                    <label id="label_modicar_perfil" for="exampleInputUser">Usuari</label>
                     <input type="text" name="user" value="<?php echo $user; ?>" class="form-control" id="exampleInputUser" aria-describedby="subjectHelp" placeholder="Usuari" required>
                 </div>
-                <button type="submit" class="btn btn-primary float-right">Enviar</button>
+                <button type="submit" class="btn btn-primary float-right mb-3">Enviar</button>
             </form>
             <?php 
                 if(isset($_GET["modificar"]) && !empty($_GET["modificar"] == "repetit"))
@@ -218,6 +235,8 @@ else
             ?>
             </div>
             <div class="col-md-3"></div>
+       </div>
+           </div>
        </div>
     </div>
    <?php include('header_footer/footer.php'); ?>

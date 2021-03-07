@@ -126,6 +126,16 @@ else
             background-color: #ffffffc4;
         }
 
+        #container_visites_add{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        #label_add{
+            color: navy;
+            font-weight: 600;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -161,12 +171,6 @@ else
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
                     </li>
-                    <!--<li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_allotjaments_admin.php">Allotjaments</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
-                    </li>-->
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
                     </li>
@@ -183,9 +187,12 @@ else
        </div>
        <div class="div-spacer"></div>
        <div class="div-spacer"></div>
+       <div class="container">
+
+       <div id="container_visites_add">
        <div class="row">
            <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Afegir Visites</b></span></h2>
+               <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Afegir Visites</b></span></h2>
            </div>
        </div>
         <div class="div-spacer"></div>
@@ -197,9 +204,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
+                        <label id="label_add">Nom Visita</label>
                         <input type="text" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
                     </div>
                     <div class="col-md-5">
+                        <label id="label_add">Preu visita</label>
                         <input type="number" step=0.01 name="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
@@ -207,19 +216,23 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
+                    <label id="label_add">Idioma</label>
                         <input type="text" name="idioma" class="form-control mb-2" placeholder="Idioma">
                     </div>
                     <div class="col-md-5">
-                    <input type="number" name="places_totals" class="form-control mb-2" placeholder="Places">
+                        <label id="label_add">Places visita</label>
+                        <input type="number" name="places_totals" class="form-control mb-2" placeholder="Places">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
+                        <label id="label_add">Durada visita</label>
                         <input type="text" name="durada" class="form-control mb-2" placeholder="Durada">
                     </div>
                     <div class="col-md-5">
+                        <label id="label_add">Punt de trobada</label>
                         <input type="text" name="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
                     </div>
                     <div class="col-md-1"></div>
@@ -227,9 +240,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
+                        <label id="label_add">Latitud</label>
                         <input type="text" name="latitud" class="form-control mb-2" placeholder="Latitud">
                     </div>
                     <div class="col-md-5">
+                        <label id="label_add">Longitud</label>
                         <input type="text" name="longitud" class="form-control mb-2" placeholder="Longitud">
                     </div>
                     <div class="col-md-1"></div>
@@ -237,9 +252,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
+                        <label id="label_add" >Imatge visita</label>
                         <input type="file" id="fitxer" name="fitxer" class="form-control-file mb-2" style="font-size: 14px;">
                     </div>
                     <div class="col-md-5">
+                        <label id="label_add" >Dia de visita</label>
                         <input type="date" name="dia_visita" class="form-control mb-2" placeholder="Dia visita">
                     </div>
                     <div class="col-md-1"></div>
@@ -247,7 +264,7 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                        <label for="exampleFormControlTextarea1">Introducció</label>
+                        <label id="label_add" for="exampleFormControlTextarea1">Introducció</label>
                         <textarea class="form-control mb-2" name="intro" id="exampleFormControlTextarea1" rows="3" required></textarea>
                     </div>
                     <div class="col-md-1"></div>
@@ -255,7 +272,7 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                    <label for="exampleFormControlTextarea2">Descripció</label>
+                    <label id="label_add" for="exampleFormControlTextarea2">Descripció</label>
                     <textarea class="form-control mb-2" name="desc" id="exampleFormControlTextarea2" rows="3" required></textarea>
                     </div>
                     <div class="col-md-1"></div>
@@ -266,7 +283,7 @@ else
                         echo "<p class='buit_registre'>Error, el fitxer ja existeix.</p>";
                     }
                 ?>
-                <div class="form-row">
+                <div class="form-row pb-4">
                     <div class="col-md-1"></div>
                     <div class="col-10 text-right">
                         <button type="submit" class="btn btn-primary">Afegir</button>
@@ -276,6 +293,8 @@ else
             </form>
            </div>
        </div> 
+       </div>
+       </div>
     </div>
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>

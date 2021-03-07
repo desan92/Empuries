@@ -126,6 +126,16 @@ else
             background-color: #ffffffc4;
         }
 
+        #container_visites_edit{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        #label_edit{
+            color: navy;
+            font-weight: 600;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -161,12 +171,6 @@ else
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="profile_admin.php">Perfil</a>
                     </li>
-                    <!--<li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_allotjaments_admin.php">Allotjaments</a>
-                    </li>
-                    <li class="nav-item list-inline-item">
-                        <a class="nav-link text-light" href="profile_monuments_admin.php">Monuments</a>
-                    </li>-->
                     <li class="nav-item list-inline-item">
                         <a class="nav-link text-light" href="comandes_admin.php">Comandes</a>
                     </li>
@@ -183,9 +187,11 @@ else
        </div>
        <div class="div-spacer"></div>
        <div class="div-spacer"></div>
+       <div class="container">
+           <div id="container_visites_edit">
        <div class="row">
            <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
+               <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Dades Visites Programades</b></span></h2>
            </div>
        </div>
         <div class="div-spacer"></div>
@@ -200,18 +206,17 @@ else
                         <input v-if="carregat" type="hidden" :value="info_visita.id_producte" name="id_visita" class="form-control mb-2">
                     </div>
                     <div class="col-md-5">
-                        <!--<input v-if="carregat" type="hidden" :value="info_visita.places_ocupades" name="places_ocupades" class="form-control mb-2">-->
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label>Nom visita</label>
+                        <label id="label_edit">Nom visita</label>
                         <input v-if="carregat" type="text" :value="info_visita.nom_producte" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
                     </div>
                     <div class="col-md-5">
-                        <label>Preu visita</label>
+                        <label id="label_edit">Preu visita</label>
                         <input v-if="carregat" type="number" step=0.01 :value="info_visita.preu" name="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
@@ -219,11 +224,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label>Idioma</label>
+                        <label id="label_edit">Idioma</label>
                         <input v-if="carregat" type="text" :value="info_visita.idioma" name="idioma" class="form-control mb-2" placeholder="Idioma">
                     </div>
                     <div class="col-md-5">
-                    <label>Places visita</label>
+                    <label id="label_edit">Places visita</label>
                     <input v-if="carregat" type="number" :value="info_visita.places" name="places_totals" class="form-control mb-2" placeholder="Places">
                     </div>
                     <div class="col-md-1"></div>
@@ -231,11 +236,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label>Durada visita</label>
+                        <label id="label_edit">Durada visita</label>
                         <input v-if="carregat" type="text" :value="info_visita.durada" name="durada" class="form-control mb-2" placeholder="Durada">
                     </div>
                     <div class="col-md-5">
-                        <label>Punt de trobada</label>
+                        <label id="label_edit">Punt de trobada</label>
                         <input v-if="carregat" type="text" :value="info_visita.punt_trobada" name="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
                     </div>
                     <div class="col-md-1"></div>
@@ -243,11 +248,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label>Latitud</label>
+                        <label id="label_edit">Latitud</label>
                         <input v-if="carregat" type="text" :value="info_visita.latitud" name="latitud" class="form-control mb-2" placeholder="Latitud">
                     </div>
                     <div class="col-md-5">
-                        <label>Longitud</label>
+                        <label id="label_edit">Longitud</label>
                         <input v-if="carregat" type="text" :value="info_visita.longitud" name="longitud" class="form-control mb-2" placeholder="Longitud">
                     </div>
                     <div class="col-md-1"></div>
@@ -255,11 +260,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                    <label>Imatge visita</label>
+                    <label id="label_edit">Imatge visita</label>
                         <input v-if="carregat" type="file" name="fitxer" class="form-control-file mb-2" style="font-size: 14px;">
                     </div>
                     <div class="col-md-5">
-                    <label>Dia de visita</label>
+                    <label id="label_edit">Dia de visita</label>
                         <input v-if="carregat" type="date" :value="info_visita.dia_visita" name="dia_visita" class="form-control mb-2">
                     </div>
                     <div class="col-md-1"></div>
@@ -267,7 +272,7 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                        <label for="exampleFormControlTextarea1">Introducció</label>
+                        <label id="label_edit" for="exampleFormControlTextarea1">Introducció</label>
                         <textarea v-if="carregat" class="form-control mb-2" name="intro" id="exampleFormControlTextarea1" rows="3" required>{{ info_visita.intro_descripcio }}</textarea>
                     </div>
                     <div class="col-md-1"></div>
@@ -275,7 +280,7 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                    <label for="exampleFormControlTextarea2">Descripció</label>
+                    <label id="label_edit" for="exampleFormControlTextarea2">Descripció</label>
                     <textarea v-if="carregat" class="form-control mb-2" name="desc" id="exampleFormControlTextarea2" rows="3" required>{{ info_visita.descripcio }}</textarea>
                     </div>
                     <div class="col-md-1"></div>
@@ -286,7 +291,7 @@ else
                         echo "<p class='buit_registre'>Error, la informació no s'ha penjat correctament.</p>";
                     }
                 ?>
-                <div class="form-row">
+                <div class="form-row pb-4">
                     <div class="col-md-1"></div>
                     <div class="col-10 text-right">
                         <button type="submit" class="btn btn-primary">Modificar</button>
@@ -296,6 +301,8 @@ else
             </form>
            </div>
        </div> 
+       </div>
+       </div>
     </div>
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>

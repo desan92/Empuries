@@ -311,12 +311,11 @@
                             $total = $quantitat * $preu;
                             $visita = array("id" => $id, "nom" => $nom, "imatge" => $imatge, "quantitat" => $quantitat, "preu" => $preu, "total_producte" => $total);
                             $_SESSION["cistella"][] = $visita;
-                            var_dump($_SESSION["cistella"]);
+
                             header("Location:../cistella_compra.php");
                         }
                         else
                         {
-                            var_dump($_SESSION["cistella"]);
                             header("Location:../info_visita.php?id=". $id ."&quantitat=error");
                         }
 

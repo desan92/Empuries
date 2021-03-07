@@ -351,10 +351,12 @@ a{
 
 .btn:hover{
     background-color: #2CA1BC;
+    color: white !important;
 }
 
 .btn_log:hover{
-    background-color: white;
+    background-color: #0000f0;
+    color: white !important;
 }
 
 

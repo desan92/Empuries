@@ -126,6 +126,20 @@ else
             background-color: #ffffffc4;
         }
 
+        .container_taula_visites{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        .capcalera_taula_visites{
+            background-color: navy;
+            color: white;
+        }
+
+        .body_taula_visites{
+            background-color: #e1e7ec;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -175,27 +189,27 @@ else
             </nav>
             </div>
        </div>
-       <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
-           </div>
-       </div>
         <div class="div-spacer"></div>
         <div class="div-spacer"></div>
         <div class="div-spacer"></div>
-       <div class="row">
+        <div class="container">
+            <div class="container_taula_visites">
+            <div class="row">
+                <div class="col">
+                <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Llistat de visites</b></span></h2>
+                </div>
+            </div>
+       <div class="row mt-5">
            <div class="col-12">
            <table class="table table-responsive-sm table-hover" id="table_monuments">
-            <thead>
+            <thead class="capcalera_taula_visites">
                 <tr>
                 <th scope="col" class="text-center">id_visita</th>
                 <th scope="col" class="text-center">Nom</th>
                 <th scope="col" class="text-center">Comandes</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="body_taula_visites">
                 <tr v-if="carregat" v-for="visita in info_visita">
                 <th scope="row" class="text-center">{{ visita.id_producte }}</th>
                 <td class="text-center">{{ visita.nom_producte }}</td>
@@ -209,6 +223,8 @@ else
             </table>
            </div>
        </div>
+       </div>
+        </div>
     </div>
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>

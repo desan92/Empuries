@@ -29,7 +29,7 @@
                 //es comprova la variable pagament si existeix, esta plena i conte accept.
                 if(isset($_GET["payment"]) && !empty($_GET["payment"]) && $_GET["payment"] == "accept")
                 {
-                    //es comrpo que existeix cistella i es calcula el total de compra.
+                    //es comprova que existeix cistella i es calcula el total de compra.
                     if(isset($_SESSION["cistella"]))
                     {
                         foreach($_SESSION["cistella"] as $index => $array)

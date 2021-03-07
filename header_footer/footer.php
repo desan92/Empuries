@@ -8,8 +8,11 @@
             <!--Grid column-->
             <div class="col-md-4 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Que fer?</h5>
-
+                <!--Enllaços que enviaran a la pagina historia, visites, monuments i allotjaments.-->
                 <ul class="list-unstyled mb-0 text-light" id="list_footer">
+                <li>
+                    <a href="historia.php" class="text-light">Historia</a>
+                  </li>
                   <li>
                     <a href="visites.php" class="text-light">Excursions Programadas</a>
                   </li>
@@ -19,13 +22,11 @@
                   <li>
                     <a href="allotjaments.php" class="text-light">Allotjaments</a>
                   </li>
-                  <!--<li>
-                    <a href="#" class="text-light"></a>
-                  </li>-->
                 </ul>
               </div>
             <!--Grid column-->
             <div class="col-md-4 mb-4 mb-md-0">
+            <!--fila amb informacio de  ''l'empresa Emporium''.-->
               <h5 class="text-uppercase">Contacte</h5>
 
               <ul class="list-unstyled mb-0" id="list_footer">
@@ -43,6 +44,7 @@
                 </li>
               </ul>
             </div>
+            <!--Logo de la pagina.-->
             <div class="col-md-4 mb-4 mb-md-0">
                <img id="photo_footer" src="images/logo/logo.png">
            </div>

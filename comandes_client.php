@@ -106,6 +106,11 @@ else
             background-color: #ffffffc4;
         }
 
+        .container_comandes_client{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 
@@ -150,10 +155,16 @@ else
             </nav>
             </div>
        </div><br>
-       
+       <div class="container">
+            <div class="container_comandes_client">
+       <div class="row">
+                <div class="col">
+                <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Comandes Realitzades</b></span></h2>
+                </div>
+            </div>
        <div class="row mt-5">
            <div class="col">
-           <div class="container p-3" style="background-color: #ffffffc4;">
+           <div class="container p-3">
            <div v-if="!comandes.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>&nbsp;&nbsp;No hi ha cap comanda realitzada.</div>
@@ -198,6 +209,8 @@ else
             </div>
            </div>
        </div>
+       </div>
+            </div>
     </div>
     </div>
     

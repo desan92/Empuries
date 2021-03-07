@@ -148,7 +148,7 @@
        <div class="div-spacer"></div>
         <div class="row ml-4 mr-4 mb-3" id="btn_intro">
             <div class="col-md-1"></div>
-            <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a id="a" href="#"><i id="icon_1" class="fas fa-landmark stretched-link"></i><br>Historia</a></div>
+            <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a id="a" href="historia.php"><i id="icon_1" class="fas fa-landmark stretched-link"></i><br>Historia</a></div>
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="monuments.php"><i id="icon_1" class="fas fa-archway stretched-link"></i><br>Monuments</a></div>
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="visites.php"><i id="icon_1" class="fas fa-bus stretched-link"></i><br>Visites</a></div>
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="allotjaments.php"><i id="icon_1" class="fas fa-hotel stretched-link"></i><br>Allotjaments</a></div>
@@ -197,7 +197,7 @@
         var x = 0;
         function recorregut()
         {
-            var imatge = ["Turisme", "Historia", "Gastronomia"];
+            var imatge = ["Natura", "Turisme", "Historia", "Gastronomia", "Festes i tradicions"];
     
             if(x >= imatge.length-1)
             {

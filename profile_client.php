@@ -95,8 +95,9 @@ else
             margin-bottom: 50px;
         }
 
-        #titol_info{
+        #titol_info_perfil{
             font-size: 21px;
+            color: navy;
         }
 
         #imatge-personal{
@@ -113,6 +114,15 @@ else
             background-color: #ffffffc4;
             margin-top:4%;
             margin-bottom:4%;
+        }
+
+        #container_profile{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        #bold_perfil{
+            color: navy;
         }
 
         @media all and (max-width: 768px){
@@ -163,21 +173,25 @@ else
             </nav>
             </div>
        </div>
-       <div class="row" id="perfil_info">
+       <div class="container">
+            <div id="container_profile">
+       <div class="row p-4" id="perfil_info">
             <div class="col-md-6">
-              <p class="text-center" id="titol_info"><b>Foto de perfil</b></p>
+              <p class="text-center"  id="titol_info_perfil"><b>Foto de perfil</b></p>
               <img class="rounded d-block m-auto" src="images/perfil/perfil.jpg" id="imatge-personal">
            </div>
            <div class="col-md-6 text-center" id="desc_user">
-              <p class="text-center" id="titol_info"><b>Descripció usuari:</b></p>
+              <p class="text-center"  id="titol_info_perfil"><b>Descripció usuari:</b></p>
               <ul class="list-inline mx-auto justify-content-center">
-                  <li class=""><b>Nom:</b> <?php echo $nom; ?></li>
-                  <li class=""><b>Cognom:</b> <?php echo $cognom; ?></li>
-                  <li class=""><b>Username:</b> <?php echo $user; ?></li>
-                  <li class=""><b>Email:</b> <?php echo $mail; ?></li>
+                  <li class=""><b id="bold_perfil">Nom:</b> <?php echo $nom; ?></li>
+                  <li class=""><b id="bold_perfil">Cognom:</b> <?php echo $cognom; ?></li>
+                  <li class=""><b id="bold_perfil">Username:</b> <?php echo $user; ?></li>
+                  <li class=""><b id="bold_perfil">Email:</b> <?php echo $mail; ?></li>
                   <li class="mt-3"><a href="profile_edit.php" class="btn btn-primary">Modificar</a> <a href="perfil/perfil_eliminar.php?id='<?php echo $id; ?>'" class="btn btn-primary">Eliminar</a></li>
               </ul>
            </div>
+       </div>
+        </div>
        </div>
     </div>
    <?php include('header_footer/footer.php'); ?>

@@ -81,8 +81,8 @@
         }
 
         .btn_cerca:hover{
-            background-color: white;
-            color: black !important;
+            background-color: #0000f0;
+            color: white !important;
         }
 
         @media all and (max-width: 768px){
@@ -117,9 +117,6 @@
         </div>
         <div class="container_allotjaments">
        <div class="container recuadre_allotjament">
-           <div class="row m-1">
-                <span class="col-12 m-auto text-center"><b>ALLOTJAMENT</b></span>
-           </div>
             <div class="row m-1 mt-3">
                 <div class="col-12 m-auto justify-content-center" id="desc_allotjament">
                     <img class="img-fluid" src="images/1.jpg" id="descripcio_hospedatge">

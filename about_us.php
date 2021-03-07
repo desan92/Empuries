@@ -73,6 +73,10 @@
             margin-bottom:4%;
         }
 
+        #input_contacte{
+            color: navy;
+            font-weight: 600;
+        }
         @media all and (max-width: 768px){
             .form_contacte{
                 padding-left: 15px;
@@ -130,20 +134,20 @@
             <div class="col-md-6 form_contacte">
             <form action="mail/mail.php" method="POST">
                 <div class="form-group">
-                    <label for="exampleInputNom">Nom</label>
+                    <label id="input_contacte" for="exampleInputNom">Nom</label>
                     <input type="nom" name="nom" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                    <label id="input_contacte" for="exampleInputEmail1">Email</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputSubject">Tema</label>
+                    <label id="input_contacte" for="exampleInputSubject">Tema</label>
                     <input type="subject" name="subject" class="form-control" id="exampleInputSubject" aria-describedby="subjectHelp" placeholder="Tema" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Missatge</label>
+                    <label id="input_contacte" for="exampleFormControlTextarea1">Missatge</label>
                     <textarea class="form-control" name="missatge" id="exampleFormControlTextarea1" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary float-right">Enviar</button>

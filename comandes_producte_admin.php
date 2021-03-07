@@ -126,6 +126,20 @@ else
             background-color: #ffffffc4;
         }
 
+        .container_taula_visites{
+            background-color: #ffffffc4;
+            border-radius: 5px;
+        }
+
+        .capcalera_taula_visites{
+            background-color: navy;
+            color: white;
+        }
+
+        .body_taula_visites{
+            background-color: #e1e7ec;
+        }
+
         @media all and (max-width: 768px){
             #desc_user{
                 margin-top: 25px;
@@ -175,20 +189,23 @@ else
             </nav>
             </div>
        </div>
-       <div class="div-spacer"></div>
-       <div class="div-spacer"></div>
-       <div class="row">
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
+        <div class="container">
+            <div class="container_taula_visites">
+            <div class="row">
+                <div class="col">
+                <h2 class="text-center m-auto pt-5" style="color: navy;"><span><b>Comandes realitzades per visita</b></span></h2>
+                </div>
+            </div>
+       <div class="row mt-5">
            <div class="col-12">
-               <h2 class="titol_destacats text-center w-75"><span><b>Dades Visites Programades</b></span></h2>
-           </div>
-       </div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-        <div class="div-spacer"></div>
-       <div class="row">
-           <div class="col-12">
-           <table class="table table-responsive-sm table-hover" id="table_monuments">
-            <thead>
+           <div v-if="!comanda_producte.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>&nbsp;&nbsp;No hi ha comandes aquesta visita.</div>
+           <table v-if="comanda_producte.length" class="table table-responsive-sm table-hover" id="table_monuments">
+            <thead class="capcalera_taula_visites">
                 <tr>
                 <th scope="col" class="text-center">ID comanda</th>
                 <th scope="col" class="text-center">Nom producte</th>
@@ -200,7 +217,7 @@ else
                 <th scope="col" class="text-center">Correu Electrónic</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="body_taula_visites">
                 <tr v-if="carregat" v-for="comanda in comanda_producte">
                 <th scope="row" class="text-center">{{ comanda.id_comanda }}</th>
                 <th scope="row" class="text-center">{{ comanda.nom_producte }}</th>
@@ -208,14 +225,16 @@ else
                 <td class="text-center">{{ comanda.quantitat_producte }}</td>
                 <td class="text-center">{{ comanda.preu_total_producte }}€</td>
                 <td class="text-center">{{ comanda.status_comanda }}</td>
-                <td class="text-center">{{ comanda.nom_usuari }} {{ comanda.cognom_usuari }}</td>
-                <td class="text-center">{{ comanda.mail }}</td>
+                <td v-if="comanda.nom_usuari != null" class="text-center">{{ comanda.nom_usuari }} {{ comanda.cognom_usuari }}</td><td v-else="comanda.nom_usuari == null" class="text-center">Usuari Borrat</td>
+                <td v-if="comanda.mail != null" class="text-center">{{ comanda.mail }}</td><td v-else="comanda.mail == null" class="text-center">Usuari Borrat</td>
                 </td>
                 </tr>
             </tbody>
             </table>
            </div>
        </div>
+       </div>
+        </div>
     </div>
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>
