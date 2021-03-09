@@ -85,7 +85,7 @@
                                 }
                                 else
                                 {
-                                    header("Location:../info_visita.php?id=". $id ."&quantitat=erro2");
+                                    header("Location:../info_visita.php?id=". $id ."&quantitat=error");
                                 }
                                 //en cas de trobar el producte a l'array es pasa el seu valor a true.
                                 $validar = true;
@@ -112,13 +112,9 @@
                             }
                             else
                             {
-                                var_dump($_SESSION["cistella"]);
-                                header("Location:../info_visita.php?id=". $id ."&quantitat=error3");
+                                //var_dump($_SESSION["cistella"]);
+                                header("Location:../info_visita.php?id=". $id ."&quantitat=error");
                             }
-                        }
-                        else
-                        {
-                            //header("Location:../info_visita.php??id=". $id ."&error=error4");
                         }
                     }
                     elseif(isset($_GET["add"], $_GET["id"]) && !empty($_GET["add"]) && !empty($_GET["id"]))
@@ -169,7 +165,7 @@
                                 else
                                 {
 
-                                    header("Location:../cistella_compra.php?quantitat=erro2");
+                                    header("Location:../cistella_compra.php?quantitat=erro");
                                 }
                                 
                             }
@@ -233,7 +229,7 @@
                                 else
                                 {
                                     var_dump($_SESSION["cistella"]);
-                                    header("Location:../cistella_compra.php?quantitat=erro2");
+                                    header("Location:../cistella_compra.php?quantitat=erro");
                                 }
                                 
                             }

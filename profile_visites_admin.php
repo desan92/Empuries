@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+//Es comprova que existeix rol i que aquest es admin si no torna a index.
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -11,6 +11,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //es pasen les varibles del session creades al loguin a variables.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -25,7 +26,6 @@ if(isset($_SESSION["rol"]))
             header("Location: index.php");
         }
     }
-    //header("Location: index.php");
 }
 else
 {
@@ -155,7 +155,7 @@ else
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Visites<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -201,6 +201,7 @@ else
             </div>
        <div class="row mt-3">
            <div class="col-12">
+               <!--es crea la taula on es mostrarn totes les visites de la bbdd.-->
            <table class="table table-responsive-sm table-hover" id="table_monuments">
             <thead class="capcalera_taula_visites">
                 <tr>
@@ -234,6 +235,22 @@ else
                 </div>
            </div>
        </div> 
+       <?php
+       /**
+        * En cas d'error al eliminar una visita salta aquest missatge.
+        */
+        if(isset($_GET["borrar"]) && !empty($_GET["borrar"]))
+        {
+            echo "<div class='row'>
+                    <div class='col'>
+                        <div class='text-center'>
+                            <p style='color: red;'>Error a l'eliminar la visita guiada.</p>
+                        </div>
+                    </div>
+                </div> ";
+        }
+        ?>
+        
     </div>
     </div>
     </div>
@@ -251,6 +268,7 @@ else
             carregat: false
         },
         methods:{
+            //dades recollides de la bbdd que contenen informacio de les visites.
             dadesVisita(){
                 axios.get("JSON/json_visites/dades_visites.php")
                 .then(res=>{
@@ -261,6 +279,7 @@ else
             }
         },
         mounted(){
+            //es crida la metode dadesvisita.
             this.dadesVisita()
         }
        

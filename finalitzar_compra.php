@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+//es comprava que existeix la session ron i que es client si no torna a index.php
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -11,6 +11,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //es pasen les session creades al login a una variable.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -18,14 +19,14 @@ if(isset($_SESSION["rol"]))
             $cognom = $_SESSION['cognom'];
             $mail = $_SESSION['mail'];
             $id = $_SESSION["id"];
-            //echo $id;
+
         }
         else
         {
             header("Location: index.php");
         }
     }
-    //header("Location: index.php");
+
 }
 else
 {
@@ -116,6 +117,7 @@ else
 
 <body>
 <div id="app">
+    <!--header de la pagina.-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -158,11 +160,11 @@ else
         <div class="row">
             <div class="col-md-8">
             <div class="container pt-3" style="background-color: #ffffffc4;">
-                <!-- Alert-->
+                <!-- Alert que surt si no hi ha cap item a finalitzar compra.-->
                 <div v-if="!cistella.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>&nbsp;&nbsp;No hi ha items a la cistella de compra.</div>
-                <!-- Shopping Cart-->
+                <!-- Part informativa de la compra abans de comprar.-->
                 <div class="table-responsive shopping-cart">
                     <table  v-if="cistella.length" class="table">
                         <thead>
@@ -198,7 +200,8 @@ else
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="paypal-button-container"></div>
+                <!--boto de pagament de paypal-->
+                <div v-if="cistella.length" id="paypal-button-container"></div>
             </div>
         </div>
     </div>
@@ -208,6 +211,7 @@ else
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
+   <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 </div>
 
@@ -225,24 +229,28 @@ else
             total: ''
         },
         methods:{
+            //dadesllocturistic recull la informacio de la varible session_cistella.
             dadesLlocTuristic(){
                 axios.get("cistella/visualitzar_session.php")
                 .then(res=>{
                     this.cistella = res.data
                     this.carregat = true
-                    console.log(this.cistella)
-                    
+
+                    //es calcula el total de la cistella.
                     this.total = this.cistella.reduce((sum, curr) => sum + curr.total_producte, 0);
                 })
             }
         },
         mounted(){
+            //es crida al metode dadesllocturistic.
             this.dadesLlocTuristic()
         }
     
     })
 
-    
+    /**
+     * script del boto de pagament de paypal.
+     */
       paypal.Buttons({
         createOrder: function(data, actions) {
           return actions.order.create({
@@ -254,13 +262,16 @@ else
                 breakdown: {
                         item_total: {
                             currency_code: "EUR",
-                            value: vm.total
+                            value: vm.total //s'introdueix el preu final de la compra.
                         }
                     } 
               },
                 items: [
                     
                     <?php
+                    /**
+                     * foreach realitzar per mostrar a paypal tots els items comprats.
+                     */
                             foreach($_SESSION["cistella"] as $index => $array)
                             {
                                 echo "{ 
@@ -275,6 +286,7 @@ else
                           ?>
                 ],
                 shipping: {
+                    //informacio del lloc de compra i del "propietari".
                     address:{
                             address_line_1: "Carrer Nou nº 9",
                             admin_area_1: "Figueres",
@@ -290,16 +302,15 @@ else
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
+              //si s'aproba el pagament surt un alert i s'envia a una pagina on es registrara  a la bbdd.
               if(details.status == "COMPLETED")
               {
-                  alert('Transaction completed by ' + details.payer.name.given_name);
-                  console.log(details);
-                  console.log(details.status);
+                  alert('Transaction completed by ' + details.payer.name.given_name);//details.payer.name.given_name
                   window.location.href = "http://localhost/Emporium/cistella/registre_comanda.php?payment=accept";
-                  //borrar session cart. guardar bbdd comprar amb les dades. mirar que no falti res
               }
               else
               {
+                  //si no es realitza pagament saltara un alert.
                   alert('Transaction failed');
               }
             

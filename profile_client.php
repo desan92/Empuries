@@ -1,4 +1,5 @@
 <?php session_start();
+//es comprova que la session rol existeix i si es client, sino ho es torna a index.
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -9,6 +10,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //es pasen les variables session creades al login a variables. 
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -23,7 +25,6 @@ if(isset($_SESSION["rol"]))
             header("Location: index.php");
         }
     }
-    //header("Location: index.php");
 }
 else
 {
@@ -134,6 +135,7 @@ else
 </head>
 
 <body>
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -182,6 +184,7 @@ else
            </div>
            <div class="col-md-6 text-center" id="desc_user">
               <p class="text-center"  id="titol_info_perfil"><b>Descripció usuari:</b></p>
+              <!--Es pasen les sessions directament per mostrar.-->
               <ul class="list-inline mx-auto justify-content-center">
                   <li class=""><b id="bold_perfil">Nom:</b> <?php echo $nom; ?></li>
                   <li class=""><b id="bold_perfil">Cognom:</b> <?php echo $cognom; ?></li>
@@ -194,6 +197,7 @@ else
         </div>
        </div>
     </div>
+    <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>

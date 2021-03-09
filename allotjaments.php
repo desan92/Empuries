@@ -85,6 +85,8 @@
             color: white !important;
         }
 
+        /**media querie  que adapta les imatdes dels hotels i el seu contingut al centre del
+        div quan es menosr a 768px*/
         @media all and (max-width: 768px){
         #imatge_allotjament{
             align-items: center;
@@ -105,6 +107,7 @@
 
 <body>
     <div id="app">
+        <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
         <div class="container-fluid">
         <div class="row">
@@ -152,7 +155,7 @@
                 </div>
             </div>
        </div>
-       
+       <!--v-for al div que contindra tota l'informacio dels allotjaments enmagatzemants.-->
        <div v-if="carregat" class="container recuadre_allotjament" v-for="allotjament in allotjaments">
             <div class="row">
                 <div class="col-md-5 col-sm-12 m-auto" id="imatge">
@@ -171,6 +174,7 @@
        </div>
    </div>
    </div>
+   <!--footer de la pagina-->
     <?php include('header_footer/footer.php'); ?>
 
    <script>
@@ -180,6 +184,7 @@
             data: {
                 allotjaments: [],
                 url: '',
+                /**array amb totes les poblacions amb allotjaments troabats a la bbdd. */
                 array: [ 
                     { Poblacio: ""},
                     { Poblacio: "Portbou"},
@@ -219,19 +224,18 @@
                     { Poblacio: "Platja d'Aro"},
                     { Poblacio: "Sant Feliu de Guixols"}
                 ],
-                items: [
-                    { Nom: "Hotel Jonquera", Direccio: "Avinguda de Galicia, 2-4", Poblacio :"La Jonquera", Telefon: 972556555, web: "hotelnacionaljonquera.com", mail: "", imatge: "hotel_lajonquera.jpg" },
-                    { Nom: "La Fornal dels Ferrers",Direccio: "Carrer Major, 31",Poblacio: "Terrades",Telefon: 972542004,web: "www.lafornal.com",mail: "info@lafornal.com", imatge: "lafornal.jpg" }
-                ],
                 carregat: false,
             },
             methods:{
+                /**
+                 * dades d'allotjaments carregades de la bbdd i agafades per axios on posteriorment 
+                 * es pasaran a la variable allotjaments on sera utilitzats per posar a la pagina web
+                 */
                 dadesAllotjament(){
                     axios.get("JSON/json_allotjament/dades_allotjament.php?city=" + this.codi)
                     .then(res=>{
-                    console.log(res.data)
                     this.allotjaments = res.data
-
+                        //es mante en false si no esta carregat per que no dongui error i es creiin div sense contigut.
                         if(this.allotjaments.length == 0)
                         {
                             this.carregat = false
@@ -240,11 +244,11 @@
                         {
                             this.carregat = true
                         }
-                        console.log(this.carregat)
                     })
                 }
             },
             computed: {
+                //funcio amb la que s'ordenen les poblacions del select.
                 sortedArray: function(){
                     function compare(a, b) 
                     {
@@ -263,9 +267,11 @@
                 }
             },
             created(){
+                //s'agafa el codi id pasat per get de l'url
                 this.codi = window.location.search.split('=')[1]; 
             },
             mounted(){
+                //es crida al metode dadesallotjaments.
             this.dadesAllotjament()
         },
        

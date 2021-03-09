@@ -413,6 +413,8 @@ a{
     margin-top:4%;
     margin-bottom:4%;
     }
+
+    
     
     @media all and (max-width: 768px){
         #input_registre{
@@ -422,6 +424,7 @@ a{
             top: -20px;
         }
 }
+
 
 /*MONUMENTS.PHP*/
 

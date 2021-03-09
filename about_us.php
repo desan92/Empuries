@@ -77,6 +77,7 @@
             color: navy;
             font-weight: 600;
         }
+        /*Media querie per aumentar els paddings laterals de l'informacio dels admins. */
         @media all and (max-width: 768px){
             .form_contacte{
                 padding-left: 15px;
@@ -87,6 +88,7 @@
 </head>
 
 <body>
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -132,7 +134,7 @@
        <div class="row">
            <div class="col-md-3"></div>
             <div class="col-md-6 form_contacte">
-            <form action="mail/mail.php" method="POST">
+            <form action="mail/mail.php" name="contacte" method="POST" onsubmit=" return validaciocontacte()">
                 <div class="form-group">
                     <label id="input_contacte" for="exampleInputNom">Nom</label>
                     <input type="nom" name="nom" class="form-control" id="exampleInputNom" aria-describedby="nomHelp" placeholder="Nom" required>
@@ -153,6 +155,9 @@
                 <button type="submit" class="btn btn-primary float-right">Enviar</button>
             </form>
                 <?php 
+                /**Es mostrara un error si el missatge enviat per correu electronic no ha arribat.
+                 * en cas contrari si s'envia sortira un alert que s'ha enviat el mail correctament.
+                 */
                     if(isset($_GET["missatge_status"]) && !empty($_GET["missatge_status"] == "error"))
                     {
                         echo "<p class='buit_registre'>Error, el missatge no s'ha enviat.</p>";
@@ -160,7 +165,13 @@
                     elseif(isset($_GET["missatge_status"]) && !empty($_GET["missatge_status"] == "send"))
                     {
                         echo '<script language="javascript">';
-                        echo 'alert("missatge enviat correctament")';
+                        echo "const okalert = true;
+
+                        if(okalert) {
+                            setTimeout(function() {
+                                alert('Missatge enviat correctament')
+                        }, 1000);
+                        }";
                         echo '</script>';
                     }
                 ?>
@@ -173,6 +184,26 @@
    <div class="div-spacer"></div>
    <?php include('header_footer/footer.php'); ?>
 
+   <script>
+    //a mes a mes de el required del input hi ha aquesta funcio de seguretat que mostrara error si es treuen els requireds i es vol pasar una variable buida o el mail incorrecte.
+        function validaciocontacte()
+        {
+            
+            var nom = document.forms["contacte"]["exampleInputNom"].value;
+            var mail = document.forms["contacte"]["exampleInputEmail1"].value;
+            var tema = document.forms["contacte"]["exampleInputSubject"].value;
+            var consulta = document.forms["contacte"]["exampleFormControlTextarea1"].value;
+                    
+            if(nom == "" || mail == "" || tema == ""  || consulta == "")
+            {
+                alert("Algun camp esta buit.");
+                return false;
+            }
+
+            return(true)
+
+        }
+    </script>
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

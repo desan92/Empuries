@@ -99,12 +99,12 @@
                         } 
                         else 
                         {
-                            header("Location: ../profile_edit_visites.php?insert=errorcomanda");
+                            header("Location: ../comandes_client.php?insert=errorcomanda");
                         }
                     }
                     else
                     {  
-                        header("Location: ../profile_edit_visites.php?insert=errorcomanda");
+                        header("Location: ../comandes_client.php?insert=errorcomanda");
                     }
 
                     

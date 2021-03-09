@@ -94,6 +94,7 @@
 
 <body>
 <div id="app">
+    <!--Header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">   
         <div class="row">
@@ -106,6 +107,7 @@
     </div>
     <div class="container">
        <div class="row mt-3">
+           <!--dic on es fara el v-for i apartir del qual es mostraran tots els monuments,-->
             <div class="col-lg-4 col-md-6 col-sm-12 thumb float-left" v-if="carregat" v-for="turisme in info_turistica">
             <div id="block_info">
             <a class="thumbnail" :href="'info_lloc_turistic.php?id=' + turisme.id_turisme">
@@ -126,6 +128,7 @@
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
 </div>
+<!--footer de la pagina-->
 <?php include('header_footer/footer.php'); ?>
     <script>
         var vm = new Vue({
@@ -135,18 +138,19 @@
                 carregat: false,
             },
             methods:{
+                /* Informacio de tots els monuments que hi ha a la bbdd que es recull per
+                axios i es mostrara en el lloc pertinent de la pagina.*/
                 dadesTuristiques(){
                     axios.get("JSON/json_info_turistica/dades_info_turistica.php")
                     .then(res=>{
-                        console.log(res.data)
                         this.info_turistica = res.data
                         this.carregat = true
 
-                        Mapa()
                     })
                 }
             },
             mounted(){
+                //es crida el metode creat dadesTuristiques()
             this.dadesTuristiques()
         },
        

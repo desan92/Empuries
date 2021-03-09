@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+//es comprova el rol de l'usuari i si es admin si no existeix o no es admin va a index.
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -11,6 +11,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //en cas de ser-ho es pasen les session a variables.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -155,7 +156,7 @@ else
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Comandes<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -201,6 +202,7 @@ else
             </div>
        <div class="row mt-5">
            <div class="col-12">
+               <!--taula que es mostrara les visites que hi ha, apart i a haura un boto on es pasara l'id i es veuran les comandes.-->
            <table class="table table-responsive-sm table-hover" id="table_monuments">
             <thead class="capcalera_taula_visites">
                 <tr>
@@ -240,6 +242,7 @@ else
             carregat: false
         },
         methods:{
+            //es recullen les dades de les visites que hi han guardades a la bbdd.
             dadesVisita(){
                 axios.get("JSON/json_visites/dades_visites.php")
                 .then(res=>{
@@ -250,6 +253,7 @@ else
             }
         },
         mounted(){
+            //es crida al metode.
             this.dadesVisita()
         }
        

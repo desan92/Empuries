@@ -1,16 +1,16 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+//es comprava que la session rol esta creada i que aquesta es client si no s'envia a index.php
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
-    //$rol = str_replace("<br>", '', $rol);;
     if(!empty($rol) && $rol != "Client")
     {
         header("Location: index.php");
     }
     else
     {
+        //es pasen les variables session creades al login a variable.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -116,6 +116,7 @@ else
 
 <body>
 <div id="app">
+    <!--header de la pagina -->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -165,11 +166,11 @@ else
         <div class="row mt-5">
             <div class="col-12">
             <div class="container pt-3">
-                <!-- Alert-->
+                <!-- Alert que surt si l'usuari no te cap item a la cistella.-->
                 <div v-if="!cistella.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>&nbsp;&nbsp;No hi ha items a la cistella de compra.</div>
-                <!-- Shopping Cart-->
+                <!-- En cas de tenir productes a la cistella es mostra la taula seguent.-->
                 <div class="table-responsive shopping-cart">
                     <table  v-if="cistella.length" class="table">
                         <thead>
@@ -213,6 +214,21 @@ else
                     <div class="column"><a class="btn btn-outline-secondary" href="visites.php"><i class="icon-arrow-left"></i>&nbsp;Tornar a visites</a></div>
                     <div class="column"><a class="btn btn-success" href="finalitzar_compra.php">Finalitzar compra</a></div>
                 </div>
+                <?php
+                    /**
+                     * si la quantitat introduida per producte es superior a la que hi ha a la bbdd es mostra error.
+                     */
+                        if(isset($_GET["quantitat"]) && !empty($_GET["quantitat"]))
+                        {
+                            echo "<div class='row'>
+                                    <div class='col'>
+                                        <div class='text-center'>
+                                            <p style='color: red;'>Error, has superat la quantitat de reserves permeses ha aquesta visita.</p>
+                                        </div>
+                                    </div>
+                                </div> ";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -225,6 +241,7 @@ else
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
+   <!--footer de la pagina.-->
    <?php include('header_footer/footer.php'); ?>
 </div>
 
@@ -240,18 +257,20 @@ else
             total: ''
         },
         methods:{
+            //dadesLLocturistic recull la informacio de les visites seleccionades per introduirse a la cistella de la compra.
             dadesLlocTuristic(){
                 axios.get("cistella/visualitzar_session.php")
                 .then(res=>{
                     this.cistella = res.data
                     this.carregat = true
-                    console.log(this.cistella)
-                    
+
+                    //es calcula el total de la compra.
                     this.total = this.cistella.reduce((sum, curr) => sum + curr.total_producte, 0);
                 })
             }
         },
         mounted(){
+            //es crida al metode dadesllocturistic.
             this.dadesLlocTuristic()
         }
     

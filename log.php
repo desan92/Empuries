@@ -48,15 +48,7 @@
 </head>
 
 <body>
-<button class="btn animate__animated animate__fadeInRightBig" id="btnTop" onclick="topFunction()">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-        <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-      </svg>
-    </button>
-    <a href="https://api.whatsapp.com/send?phone=+34666666666&text=Hola%21%20Voldria%20m%C3%A9s%20informaci%C3%B3%20sobre%20Emporium" class="whatsapp animate__animated animate__fadeInRightBig" id="whatsapp" target="_blank">
-    <i class="fa fa-whatsapp my-float"></i>
-    </a>
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
 <div class = "container_log">
   <div class="recuadre">
@@ -88,8 +80,11 @@
                 </div>
             </div>
             </div>
-            <!--<p>error</p>-->
             <?php 
+            /**
+             * missatges d'errors si al buscar l'user introduit no s'ha trobat
+             * si la contraseña es incorrecta.
+             */
                 if(isset($_GET["login"]) && !empty($_GET["login"] == "notrobat"))
                 {
                     echo "<p class='buit_registre'>Error, usuari no trobat</p>";
@@ -105,7 +100,7 @@
                         <input type="submit" value="Login" class="btn btn_log">
                     </div>
                 </div>
-                </div><br>
+                </div><br><!--a href que enviara a registre-->
                 <span style="color:black"> No tens conta? </span> <a href="registre.php"> Registra't (clic aquí) </a>
             </form>
             
@@ -115,6 +110,7 @@
             
         </div>
     </div>
+    <!--footer de la pagina-->
     <?php include('header_footer/footer.php'); ?>
     
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>

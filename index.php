@@ -82,6 +82,7 @@
 
 <body>
 <div id="app">
+    <!--Header de la pagina-->
     <?php include('header_footer/header.php'); ?>
    <div class="container-fluid">
        <div class="row">
@@ -100,8 +101,10 @@
        </div>
        <div class="div-spacer"></div>
        <div class="row">
+           <!--v-for per que carregui les dues visites que s'han carregat al JSON-->
             <div class="col-md-6 col-sm-12 thumb float-left mb-2" id="visites" v-if="carregat" v-for="visita in info_visita">
                 <div id="block_info" id="visites">
+                    <!--:href per poder pasar-ki la variable recollida per vue.-->
                 <a class="thumbnail" :href="'info_visita.php?id=' + visita.id_producte">
                     <div>
                         <img id="img_info_destacats" :src="'images/img_visites/' + visita.imatge_visita">
@@ -157,6 +160,7 @@
             <div class="col-md-1"></div>
        </div>
     </div>
+    <!--footer de la pagina-->
     <?php include('header_footer/footer.php'); ?>
 </div>
 
@@ -170,6 +174,8 @@
                     carregat: false
                 },
                 methods:{
+                    /* Metode que recull la informacio de la bbdd apartir de axios i es pasa a info_turistica
+                    on despres es mostrara a html.*/
                     dadesTurisme(){
                         axios.get("JSON/json_info_turistica/dades_info_turistica.php?destacat=1")
                         .then(res=>{
@@ -178,6 +184,8 @@
                         
                         })
                     },
+                    /* Metode que recull la informacio de la bbdd apartir de axios i es pasa a info_visita
+                    on despres es mostrara a html.*/
                     dadesVisita(){
                         axios.get("JSON/json_visites/dades_visites.php?destacat=1")
                         .then(res=>{
@@ -188,6 +196,7 @@
                     }
                 },
                 mounted(){
+                    //aqui es criden els dos metodes creats anteiorment.
                     this.dadesTurisme(),
                     this.dadesVisita()
                 }
@@ -195,6 +204,7 @@
             });
         
         var x = 0;
+        //funcio que fa que els elements del jumnotron canviin cada segon. Aixo es realitza amb un setinterval.
         function recorregut()
         {
             var imatge = ["Natura", "Turisme", "Historia", "Gastronomia", "Festes i tradicions"];

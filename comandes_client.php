@@ -1,6 +1,7 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+
+//Es comprova que la session existeix i que es client si no torna a index.
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -11,6 +12,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //es pasen les variables sessions del login a variables.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -116,6 +118,7 @@ else
 
 <body>
 <div id="app">
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -165,10 +168,12 @@ else
        <div class="row mt-5">
            <div class="col">
            <div class="container p-3">
+               <!--alert que es mostra si l'usuari no ha fet cap comanda.-->
            <div v-if="!comandes.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>&nbsp;&nbsp;No hi ha cap comanda realitzada.</div>
            <div v-if="comandes.length" class="accordion" id="accordionExample">
+               <!--en cas que l'usuari tingui comandes realitzades es mostra un desplegable.-->
             <div v-for="comanda in comandes" class="card">
                 <div  class="card-header" id="headingOne" style="background-color: navy;">
                 <h2 class="mb-0">
@@ -177,8 +182,9 @@ else
                     </button>
                 </h2>
                 </div>
-
+                <!--v-bind posat perque cada desplegable tingui el seu id i no interfereixi a l'hora d'obrir o tancar.-->
                 <div v-bind:id="'collapseOne' + comanda.id_comanda" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <!--es comparan els id de la comanda amb els id de item perque surtin junts.-->
                 <div v-for="item in items_comandes" v-if="comanda.id_comanda == item.id_comanda" class="card-body" style="background-color: #d1ecf1;">
                 <div class="table-responsive shopping-cart">
                     <table  class="table">
@@ -207,6 +213,21 @@ else
             </div>
             </div>
             </div>
+            <?php
+            /**
+             * en cas d'error de insert en fer la comanda es mostra un missatge aqui.
+             */
+                    if(isset($_GET["insert"]) && !empty($_GET["insert"]))
+                    {
+                        echo "<div class='row mt-3'>
+                                <div class='col'>
+                                    <div class='text-center'>
+                                        <p style='color: red;'>Error, la comanda no s'ha registrat correctament.</p>
+                                    </div>
+                                </div>
+                            </div> ";
+                    }
+                ?>
            </div>
        </div>
        </div>
@@ -218,6 +239,7 @@ else
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
+   <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 </div>
 
@@ -236,26 +258,27 @@ else
             total: ''
         },
         methods:{
+            //dadescomanda es recullen les dades de totes les comandes realitzades per l'usuari.
             dadescomandes(){
                 axios.get("cistella/comandes_realitzades.php?comandes=true")
                 .then(res=>{
                     this.comandes = res.data
                     this.carregat = true
-                    console.log(this.comandes)
                     
                 })
             },
+            //dadesitemscomandes, es recullen de la base de dades tots els items adquirits per l'usuari, independentment de la comanda.
             dadesitemscomandes(){
                 axios.get("cistella/comandes_realitzades.php?items_comandes=true")
                 .then(res=>{
                     this.items_comandes = res.data
                     this.carregat = true
-                    console.log(this.items_comandes)
                     
                 })
             }
         },
         mounted(){
+            //es cridan als metodes dadescomandes i dadesitemscomandes.
             this.dadescomandes()
             this.dadesitemscomandes()
         }

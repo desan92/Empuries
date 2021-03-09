@@ -43,12 +43,13 @@
 </head>
 
 <body>
+    <!--header de la pagina-->
 <?php include('header_footer/header.php'); ?>
 <div class = "container_register">
     <div class="recuadre">
       <div class = "row">
       <span class="col-12" id="titolregistre">REGISTRE</span>
-        <form id="form_registre" action="log_register/register.php" method="POST">
+        <form id="form_registre" name="registre" action="log_register/register.php" method="POST" onsubmit="return validacioRegistre()">
             <div class = "row">
                 <div class="form-group justify-content-center m-auto">
                     <div class="col">
@@ -56,7 +57,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control"  id="nom" name="nom" placeholder="Nom">
+                            <input type="text" class="form-control"  id="nom" name="nom" placeholder="Nom" require>
                         </div>
                     </div>
                 </div>
@@ -66,7 +67,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control"  id="cognom" name="cognom" placeholder="Cognom">
+                            <input type="text" class="form-control"  id="cognom" name="cognom" placeholder="Cognom" require>
                         </div>
                     </div>
                 </div>
@@ -78,7 +79,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control"  id="username" name="username" placeholder="Nom d'usuari">
+                            <input type="text" class="form-control"  id="username" name="username" placeholder="Nom d'usuari" require>
                         </div>
                     </div>
                 </div>
@@ -89,7 +90,8 @@
                                 <span class="input-group-text"><i class="fas fa-at"></i></span>
                             </div>
                             <input type="mail" class="form-control" id="mail" name="mail" placeholder="email"
-                            pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                            pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+                            <p id="a"></p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +103,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control"  id="password" name="password" placeholder="Contrasenya">
+                            <input type="password" class="form-control"  id="password" name="password" placeholder="Contrasenya" require>
                         </div>
                     </div>
                 </div>
@@ -111,7 +113,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control"  id="comfirm_pass" name="comfirm_pass" placeholder="Comfirma la contrasenya">
+                            <input type="password" class="form-control"  id="comfirm_pass" name="comfirm_pass" placeholder="Comfirma la contrasenya" require>
                         </div>
                     </div>
                 </div>
@@ -119,6 +121,11 @@
             <!--error-->
             <p id="passcomfirm"></p>
             <?php 
+            /**
+             * error en cas de enviar variables buides
+             * error si l'usuari o el mail ja existeixen
+             * error si les contrasenyas no son iguals
+             */
                 if(isset($_GET["registre"]) && !empty($_GET["registre"] == "buit"))
                 {
                     echo "<p class='buit_registre'>Error, algun camp esta buit</p>";
@@ -144,8 +151,24 @@
    </div>
     </div>
  </div>
+ <!--footer de la pagina.-->
  <?php include('header_footer/footer.php'); ?>
-    
+    <script>
+    //funcio que valida si el mail es correcta, apartir del regex passat es comprovara si el valor introduit seguix aquet patro.
+        function validacioRegistre()
+        {
+            var mail = document.forms["registre"]["mail"].value;
+            var regex_mail = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}/;
+            
+            if (mail == "" || !regex_mail.test(mail)) {
+                alert("Correu Electronic Incorrecte");
+                return false;
+            }
+
+            return(true)
+
+        }
+    </script>
     <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>
     <script src="bootstrap-4.5.0-dist/js/popper.min.js"></script>
     <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>

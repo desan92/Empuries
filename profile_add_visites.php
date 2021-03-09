@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
+//es comprova que exsiteix l'usuari i que es administrador sino va cap a index.
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
@@ -11,6 +11,7 @@ if(isset($_SESSION["rol"]))
     }
     else
     {
+        //es pasen les sessions creades al login a variables.
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -25,7 +26,6 @@ if(isset($_SESSION["rol"]))
             header("Location: index.php");
         }
     }
-    //header("Location: index.php");
 }
 else
 {
@@ -145,13 +145,14 @@ else
 </head>
 
 <body>
-
+<div id="app">
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Afegir Visita<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -200,16 +201,17 @@ else
         <div class="div-spacer"></div>
        <div class="row">
            <div class="col">
-           <form action="JSON/json_visites/dades_visites.php?add=true" method="POST" enctype="multipart/form-data">
+               <!--formulari per afegir una nova visita.-->
+           <form action="JSON/json_visites/dades_visites.php?add=true" name="visites" method="POST" enctype="multipart/form-data" onsubmit="return validar();">
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <label id="label_add">Nom Visita</label>
-                        <input type="text" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
+                        <input type="text" name="nom_visita" id="nom_visita" class="form-control mb-2" placeholder="Nom visita">
                     </div>
                     <div class="col-md-5">
-                        <label id="label_add">Preu visita</label>
-                        <input type="number" step=0.01 name="preu" class="form-control mb-2" placeholder="Preu">
+                        <label id="label_add">Preu visita</label>&nbsp;<span id="preu_intro" style="color: red;"></span>
+                        <input type="number" step=0.01  name="preu" id="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -217,11 +219,11 @@ else
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                     <label id="label_add">Idioma</label>
-                        <input type="text" name="idioma" class="form-control mb-2" placeholder="Idioma">
+                        <input type="text" name="idioma" id="idioma" class="form-control mb-2" placeholder="Idioma">
                     </div>
                     <div class="col-md-5">
                         <label id="label_add">Places visita</label>
-                        <input type="number" name="places_totals" class="form-control mb-2" placeholder="Places">
+                        <input type="number" name="places_totals" id="places_totals" class="form-control mb-2" placeholder="Places">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -229,11 +231,11 @@ else
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <label id="label_add">Durada visita</label>
-                        <input type="text" name="durada" class="form-control mb-2" placeholder="Durada">
+                        <input type="text" name="durada" id="durada" class="form-control mb-2" placeholder="Durada">
                     </div>
                     <div class="col-md-5">
                         <label id="label_add">Punt de trobada</label>
-                        <input type="text" name="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
+                        <input type="text" name="punt_trobada" id="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -241,11 +243,11 @@ else
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <label id="label_add">Latitud</label>
-                        <input type="text" name="latitud" class="form-control mb-2" placeholder="Latitud">
+                        <input type="number" name="latitud" id="latitud" step=0.0000001 class="form-control mb-2" placeholder="Latitud">
                     </div>
                     <div class="col-md-5">
                         <label id="label_add">Longitud</label>
-                        <input type="text" name="longitud" class="form-control mb-2" placeholder="Longitud">
+                        <input type="number" name="longitud" id="longitud" step=0.0000001 class="form-control mb-2" placeholder="Longitud">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -257,7 +259,7 @@ else
                     </div>
                     <div class="col-md-5">
                         <label id="label_add" >Dia de visita</label>
-                        <input type="date" name="dia_visita" class="form-control mb-2" placeholder="Dia visita">
+                        <input type="date" name="dia_visita" id="dia_visita" class="form-control mb-2" v-bind:min="date" placeholder="Dia visita">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -277,12 +279,6 @@ else
                     </div>
                     <div class="col-md-1"></div>
                 </div>
-                <?php 
-                    if(isset($_GET["fitxer"]) && !empty($_GET["fitxer"] == "existeix"))
-                    {
-                        echo "<p class='buit_registre'>Error, el fitxer ja existeix.</p>";
-                    }
-                ?>
                 <div class="form-row pb-4">
                     <div class="col-md-1"></div>
                     <div class="col-10 text-right">
@@ -291,6 +287,53 @@ else
                     <div class="col-md-1"></div>
                 </div>
             </form>
+            <?php
+                //si arriba la variable insert per get vol dir que hi ha hagut un error al insertar i es mostrara un error.
+                if(isset($_GET["insert"]) && !empty($_GET["insert"]))
+                {
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Error, l'informació no s'ha penjat correctament.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["buit"]) && !empty($_GET["buit"]))
+                {
+                    //si arriba aquest missatge alguna variable esta buida.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Alguna variable esta buida.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["error"]) && !empty($_GET["error"]))
+                {
+                    //si arriba error alguna variable enviada no existeix.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Alguna variable no existeix.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["fitxer"]) && !empty($_GET["fitxer"] == "existeix"))
+                {
+                    //si arriba fitxer per get vol dir que el fitxer seleccionat existeix.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Error, el fitxer ja existeix.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+
+           ?>
            </div>
        </div> 
        </div>
@@ -299,7 +342,59 @@ else
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
+   <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
+</div>
+   <script>
+   
+   function validar()
+    {
+        var nom = document.forms["visites"]["nom_visita"].value;
+        var preu = document.forms["visites"]["preu"].value;
+        var idioma = document.forms["visites"]["idioma"].value;
+        var places = document.forms["visites"]["places_totals"].value;
+        var durada = document.forms["visites"]["durada"].value;
+        var p_trobada = document.forms["visites"]["punt_trobada"].value;
+        var latitud = document.forms["visites"]["latitud"].value;
+        var longitud = document.forms["visites"]["longitud"].value;
+        var d_visita = document.forms["visites"]["dia_visita"].value;
+        var intro = document.forms["visites"]["exampleFormControlTextarea1"].value;
+        var desc = document.forms["visites"]["exampleFormControlTextarea2"].value;
+
+        //es compraova que les varibales no estiguin vuides
+        if(nom == "" || preu == "" || idioma == "" || places == "" || durada == "" || p_trobada == "" || latitud == "" || longitud == "" || d_visita == "" || intro == "" || desc == "")
+        {
+            alert("Algun camp esta buit.");
+            return false;
+        }
+        else if(preu <= 0) 
+        {
+            //es comprova que el preu sigui major a 0
+            document.getElementById("preu_intro").innerHTML ='El preu no pot ser 0 inferior.';
+            return false;
+        }
+    }
+
+    var vm = new Vue ({
+        el: "#app",
+        data:{
+            date: '',
+        },
+        methods:{
+            //es realitza aquest metode per que no pugui introduir dades menors que la data actual.
+            date_min(){
+                var date_now = new Date().toISOString().slice(0, 10);
+                this.date = date_now;
+            }
+        },
+        mounted(){
+            //es crida al metode data_min
+            this.date_min()
+        }
+       
+        })
+   
+   </script>
     
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>

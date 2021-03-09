@@ -1,6 +1,8 @@
 <?php session_start();
+//es comprova que la session rol existeix i no esta buida.
 if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
 {
+    //es pasen les variables session relacionades amb l'usuari a una variable.
     if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
     {
         $user = $_SESSION["user"];
@@ -11,12 +13,14 @@ if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
     }
     else
     {
+        //si no ecisteix no esta logejat i va a index
         header("Location: index.php");
     }
     
 }
 else
 {
+    //si no ecisteix no esta logejat i va a index
     header("Location: index.php");
 }
 
@@ -114,6 +118,7 @@ else
 </head>
 
 <body>
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -124,7 +129,9 @@ else
            </div>
        </div>
        <?php 
-       
+       /**
+        * navbar que canvia al ser admin o client i depenent de la session es crea un o l'altre.
+        */
        if($_SESSION["rol"] == "Administrador")
        {
            echo "<div class='row'>
@@ -224,6 +231,11 @@ else
                 <button type="submit" class="btn btn-primary float-right mb-3">Enviar</button>
             </form>
             <?php 
+            /**
+             * en cas que es vulgui canviar l'usuari o el mail es comprova que no estigui 
+             * repetit si ho es error.
+             * tambe es torna error si les dades son incorrectes.
+             */
                 if(isset($_GET["modificar"]) && !empty($_GET["modificar"] == "repetit"))
                 {
                     echo "<p class='buit_registre'>Error, l'usuari o el mail ja existeixen.</p>";
@@ -239,6 +251,7 @@ else
            </div>
        </div>
     </div>
+    <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 
    <script src="js/whatsapp/animation_whatsapp_top.js"></script>

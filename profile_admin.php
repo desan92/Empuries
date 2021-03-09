@@ -1,16 +1,20 @@
 <?php 
 session_start();
 //echo $_SESSION["user"] . $_SESSION["pass"];
+//es comprova si existeix la session rol creada al loggejarse
 if(isset($_SESSION["rol"]))
 {
     $rol = $_SESSION["rol"];
-    //$rol = str_replace("<br>", '', $rol);;
+
+    //es comprova si esta plena la session rol i si es administrador
     if(!empty($rol) && $rol != "Administrador")
     {
+        //en cas negatiu torna a index
         header("Location: index.php");
     }
     else
-    {
+    { 
+        //es passen les sessions creades al logejarse a una variable
         if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
         {
             $user = $_SESSION["user"];
@@ -18,17 +22,17 @@ if(isset($_SESSION["rol"]))
             $cognom = $_SESSION['cognom'];
             $mail = $_SESSION['mail'];
             $id = $_SESSION["id"];
-            //echo $id;
         }
         else
         {
+            //si no, no entaria logejat i torna a index
             header("Location: index.php");
         }
     }
-    //header("Location: index.php");
 }
 else
 {
+    //si no, no entaria logejat ni seria admin i torna a index
     header("Location: index.php");
 }
 
@@ -136,6 +140,7 @@ else
 </head>
 
 <body>
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -185,6 +190,7 @@ else
                 <div class="col-md-6 text-center" id="desc_user">
                     <p class="text-center" id="titol_info_perfil"><b>Descripció usuari:</b></p>
                     <ul class="list-inline mx-auto justify-content-center">
+                        <!--Es pasen les varibles de la session-->
                         <li class=""><b id="bold_perfil">Nom:</b> <?php echo $nom; ?></li>
                         <li class=""><b id="bold_perfil">Cognom:</b> <?php echo $cognom; ?></li>
                         <li class=""><b id="bold_perfil">Username:</b> <?php echo $user; ?></li>
@@ -196,6 +202,7 @@ else
        </div>
        </div>
     </div>
+    <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>

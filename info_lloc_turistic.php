@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+//es mira que existeixi l'id sino s'envia a la pagina monuments.
+if(!isset($_GET["id"]) || empty($_GET["id"]))
+{
+    header("Location: monuments.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -68,7 +77,7 @@
         #imatge_map{
             border: 5px solid navy;
             height: 250px;
-            width: 350px;
+            width: 300px;
             align-items: center;
             margin: auto;
             display: block;
@@ -114,6 +123,7 @@
 
 <body>
 <div id="app">
+    <!--header de la pagina-->
 <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
         <div class="row">
@@ -150,6 +160,7 @@
        <div class="container recuadre_allotjament" v-if="carregat">
        <div class="row">
             <div class="col-md-6 col-sm-12 m-auto" id="imatge">
+                <!--lloc on s'insertara googlemaps.-->
                 <div class="d-block" id="imatge_map"></div>  
             </div>
                    
@@ -167,6 +178,7 @@
    </div>
 </div>
 </div>
+<!--footer de la pagina-->
 <?php include('header_footer/footer.php'); ?>
 <script>
     var vm = new Vue({
@@ -177,6 +189,7 @@
             id: ''
         },
         methods:{
+            //aqui es recullen les dades del lloc turistic que s'ha buscat a la bbdd apartir d'axios.get i es pasa a la variable info_lloc_turistic.
             dadesLlocTuristic(){
                 axios.get("JSON/json_info_turistica/dades_info_turistica.php?id=" + this.id)
                 .then(res=>{
@@ -184,29 +197,61 @@
                     this.info_lloc_turistic = res.data
                     this.carregat = true
 
-                    initMap()
+                    //es crida a la funcio de google maps.
+                    //initMap()
                 })
             }
         },
         created(){
+            //es recull la id de la url.
             this.id = window.location.search.split('=')[1]; 
         },
         mounted(){
+            //es crida el metode dadesllocturistic
             this.dadesLlocTuristic()
         }
     
     })
-
-    function initMap()
+    /*Funcio de google maps.*/
+    /*function initMap()
     {
+        //es recullen les coordenades de vue.js i es pasan a float.
         var coordenades = {lat: parseFloat(vm.info_lloc_turistic.latitud), lng: parseFloat(vm.info_lloc_turistic.longitud)};
+        //es dona un zoom al maps i es centra el lloc proporcionat a les coordenades.
         var opcions = {zoom: 15, center: coordenades}
+        //es pasara al div on es mostrara.
         var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
+        //aqui es posa la marca del lloc exacta on es troba
         var marker = new google.maps.Marker({position: coordenades, map: map});
+    }*/
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&language=ca&callback=initMap&libraries=&v=weekly';
+    script.async = true;
+
+    window.initMap = function() {
+        //es pasen les coordenades obtingudes de la bbdd de latitud i longitud.
+        var coordenades = {lat: parseFloat(vm.info_lloc_turistic.latitud), lng: parseFloat(vm.info_lloc_turistic.longitud)};
+        //es posa un zoom a l'imatge i es centran les coordendaes al centre
+        var opcions = {
+            center: coordenades,
+            zoom: 15
+        }
+        //es posa al div el mapa.
+        var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
+        //es posan les opcions del marker.
+        var optionsmarker = {
+            position: coordenades,
+            map: map
+        };
+        //es posa una marca al lloc exacte de les coordenades.
+        var marker = new google.maps.Marker(optionsmarker)
     }
+
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
     
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAs6i1mssHmgMuKSeGkjqZa-N3nYYSnrY&callback=initMap" type="text/javascript"></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap" type="text/javascript"></script>-->
         
 </body>
         <script src="js/whatsapp/animation_whatsapp_top.js"></script>

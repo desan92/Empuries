@@ -1,31 +1,29 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
-if(isset($_SESSION["rol"]))
+//es comprova que la sessions creades al loguin existeixen i es pasen a variables.
+if(isset($_SESSION["rol"], $_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
 {
     $rol = $_SESSION["rol"];
-    //$rol = str_replace("<br>", '', $rol);;
+    $user = $_SESSION["user"];
+    $nom = $_SESSION["nom"];
+    $cognom = $_SESSION['cognom'];
+    $mail = $_SESSION['mail'];
+    $id = $_SESSION["id"];
+    
+    //es comprova que el rol no esta buit que es administrador.
     if(!empty($rol) && $rol != "Administrador")
     {
         header("Location: index.php");
     }
     else
     {
-        if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
+        //es comprova que GET comandes_visita existeix i no esta buit.
+        if(!isset($_GET["comandes_visita"]) || empty($_GET["comandes_visita"]))
         {
-            $user = $_SESSION["user"];
-            $nom = $_SESSION["nom"];
-            $cognom = $_SESSION['cognom'];
-            $mail = $_SESSION['mail'];
-            $id = $_SESSION["id"];
-            //echo $id;
-        }
-        else
-        {
-            header("Location: index.php");
+            header("Location: comandes_admin.php");
         }
     }
-    //header("Location: index.php");
+
 }
 else
 {
@@ -150,12 +148,13 @@ else
 
 <body>
     <div id="app">
+        <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Comandes<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -201,9 +200,11 @@ else
             </div>
        <div class="row mt-5">
            <div class="col-12">
+               <!--alert que es mostra si aquella visita encara no te cap comanda.-->
            <div v-if="!comanda_producte.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>&nbsp;&nbsp;No hi ha comandes aquesta visita.</div>
+                <!--si te comandes es mostra la taula.-->
            <table v-if="comanda_producte.length" class="table table-responsive-sm table-hover" id="table_monuments">
             <thead class="capcalera_taula_visites">
                 <tr>
@@ -250,20 +251,22 @@ else
             carregat: false
         },
         methods:{
+            //dades que es recullan de la base de dades i que contenen inforamcio relacionada amb la comanda i el producte.
             dadesComandaProducte(){
                 axios.get("cistella/comandes_realitzades.php?comandes_visita="  + this.id)
                 .then(res=>{
                    this.comanda_producte = res.data
 				   this.carregat = true
-                   console.log(this.comanda_producte)
                    
                 })
             }
         },
         created(){
+            //s'agafa l'id de la url pasar per get.
             this.id = window.location.search.split('=')[1]; 
         },
         mounted(){
+            //es crida al metode dadescomandaproducte.
             this.dadesComandaProducte()
         }
        

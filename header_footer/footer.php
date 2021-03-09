@@ -40,7 +40,7 @@
                   <a class="text-light"><i class="fas fa-at"></i> info@emporium.cat</a>
                 </li>
                 <li>
-                  <a class="text-light"><i class="fas fa-phone"></i> 666666666</a>
+                  <a class="text-light"><i class="fas fa-phone-alt"></i> 666666666</a>
                 </li>
               </ul>
             </div>

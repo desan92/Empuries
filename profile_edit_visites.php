@@ -1,31 +1,29 @@
 <?php 
 session_start();
-//echo $_SESSION["user"] . $_SESSION["pass"];
-if(isset($_SESSION["rol"]))
+//es comprova que la sessions creades al loguin existeixen i es pasen a variables.
+if(isset($_SESSION["rol"], $_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
 {
     $rol = $_SESSION["rol"];
-    //$rol = str_replace("<br>", '', $rol);;
+    $user = $_SESSION["user"];
+    $nom = $_SESSION["nom"];
+    $cognom = $_SESSION['cognom'];
+    $mail = $_SESSION['mail'];
+    $id = $_SESSION["id"];
+    
+    //es comprova que el rol no esta buit que es administrador.
     if(!empty($rol) && $rol != "Administrador")
     {
         header("Location: index.php");
     }
     else
     {
-        if(isset($_SESSION["user"], $_SESSION["nom"], $_SESSION['cognom'], $_SESSION['mail'], $_SESSION["id"]))
+        //es comprova que GET id existeix i no esta buit.
+        if(!isset($_GET["id"]) || empty($_GET["id"]))
         {
-            $user = $_SESSION["user"];
-            $nom = $_SESSION["nom"];
-            $cognom = $_SESSION['cognom'];
-            $mail = $_SESSION['mail'];
-            $id = $_SESSION["id"];
-            //echo $id;
-        }
-        else
-        {
-            header("Location: index.php");
+            header("Location: profile_visites_admin.php");
         }
     }
-    //header("Location: index.php");
+
 }
 else
 {
@@ -131,7 +129,7 @@ else
             border-radius: 5px;
         }
 
-        #label_edit{
+        .label_edit{
             color: navy;
             font-weight: 600;
         }
@@ -146,12 +144,13 @@ else
 
 <body>
     <div id="app">
+        <!--header de la pagina.-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
            <div class="col p-0">
               <div class="jumbotron jumbotron-fluid" id="photo">
-                  <span class="prova animate__animated animate__fadeInLeftBig">Perfil<h3 class="" id="text_actiu"></h3></span>
+                  <span class="prova animate__animated animate__fadeInLeftBig">Modificar Visita<h3 class="" id="text_actiu"></h3></span>
               </div>
            </div>
        </div>
@@ -199,7 +198,8 @@ else
         <div class="div-spacer"></div>
        <div class="row">
            <div class="col">
-           <form action="JSON/json_visites/dades_visites.php?edit=true" method="POST" enctype="multipart/form-data">
+               <!--formulara per editar visites.-->
+           <form action="JSON/json_visites/dades_visites.php?edit=true" name="visites" method="POST" enctype="multipart/form-data" onsubmit="return validar();">
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
@@ -212,67 +212,67 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label id="label_edit">Nom visita</label>
-                        <input v-if="carregat" type="text" :value="info_visita.nom_producte" name="nom_visita" class="form-control mb-2" placeholder="Nom visita">
+                        <label class="label_edit">Nom visita</label>
+                        <input v-if="carregat" type="text" :value="info_visita.nom_producte" name="nom_visita" id="nom_visita" class="form-control mb-2" placeholder="Nom visita">
                     </div>
                     <div class="col-md-5">
-                        <label id="label_edit">Preu visita</label>
-                        <input v-if="carregat" type="number" step=0.01 :value="info_visita.preu" name="preu" class="form-control mb-2" placeholder="Preu">
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <label id="label_edit">Idioma</label>
-                        <input v-if="carregat" type="text" :value="info_visita.idioma" name="idioma" class="form-control mb-2" placeholder="Idioma">
-                    </div>
-                    <div class="col-md-5">
-                    <label id="label_edit">Places visita</label>
-                    <input v-if="carregat" type="number" :value="info_visita.places" name="places_totals" class="form-control mb-2" placeholder="Places">
+                        <label class="label_edit">Preu visita</label>&nbsp;<span id="preu_intro" style="color: red;"></span>
+                        <input v-if="carregat" type="number" id="preu" step=0.01 :value="info_visita.preu" name="preu" id="preu" class="form-control mb-2" placeholder="Preu">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <label id="label_edit">Durada visita</label>
-                        <input v-if="carregat" type="text" :value="info_visita.durada" name="durada" class="form-control mb-2" placeholder="Durada">
+                        <label class="label_edit">Idioma</label>
+                        <input v-if="carregat" type="text" :value="info_visita.idioma" name="idioma" id="idioma" class="form-control mb-2" placeholder="Idioma">
                     </div>
                     <div class="col-md-5">
-                        <label id="label_edit">Punt de trobada</label>
-                        <input v-if="carregat" type="text" :value="info_visita.punt_trobada" name="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <label id="label_edit">Latitud</label>
-                        <input v-if="carregat" type="text" :value="info_visita.latitud" name="latitud" class="form-control mb-2" placeholder="Latitud">
-                    </div>
-                    <div class="col-md-5">
-                        <label id="label_edit">Longitud</label>
-                        <input v-if="carregat" type="text" :value="info_visita.longitud" name="longitud" class="form-control mb-2" placeholder="Longitud">
+                    <label class="label_edit">Places visita</label>
+                    <input v-if="carregat" type="number" :value="info_visita.places" name="places_totals" id="places_totals" id="places_totals" class="form-control mb-2" placeholder="Places">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                    <label id="label_edit">Imatge visita</label>
+                        <label class="label_edit">Durada visita</label>
+                        <input v-if="carregat" type="text" :value="info_visita.durada" name="durada" id="durada" class="form-control mb-2" placeholder="Durada">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="label_edit">Punt de trobada</label>
+                        <input v-if="carregat" type="text" :value="info_visita.punt_trobada" name="punt_trobada" id="punt_trobada" class="form-control mb-2" placeholder="Lloc de trobada">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <label class="label_edit">Latitud</label>
+                        <input v-if="carregat" type="number" step=0.0000001 :value="info_visita.latitud" name="latitud" id="latitud" class="form-control mb-2" placeholder="Latitud">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="label_edit">Longitud</label>
+                        <input v-if="carregat" type="number" step=0.0000001 :value="info_visita.longitud" name="longitud" id="longitud" class="form-control mb-2" placeholder="Longitud">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                    <label class="label_edit">Imatge visita</label>
                         <input v-if="carregat" type="file" name="fitxer" class="form-control-file mb-2" style="font-size: 14px;">
                     </div>
                     <div class="col-md-5">
-                    <label id="label_edit">Dia de visita</label>
-                        <input v-if="carregat" type="date" :value="info_visita.dia_visita" name="dia_visita" class="form-control mb-2">
+                    <label class="label_edit">Dia de visita</label>
+                        <input v-if="carregat" type="date" :value="info_visita.dia_visita" name="dia_visita" id="dia_visita" v-bind:min="date" class="form-control mb-2">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                        <label id="label_edit" for="exampleFormControlTextarea1">Introducció</label>
+                        <label class="label_edit" for="exampleFormControlTextarea1">Introducció</label>
                         <textarea v-if="carregat" class="form-control mb-2" name="intro" id="exampleFormControlTextarea1" rows="3" required>{{ info_visita.intro_descripcio }}</textarea>
                     </div>
                     <div class="col-md-1"></div>
@@ -280,17 +280,11 @@ else
                 <div class="form-row">
                     <div class="col-md-1"></div>
                     <div class="col-10">
-                    <label id="label_edit" for="exampleFormControlTextarea2">Descripció</label>
+                    <label class="label_edit" for="exampleFormControlTextarea2">Descripció</label>
                     <textarea v-if="carregat" class="form-control mb-2" name="desc" id="exampleFormControlTextarea2" rows="3" required>{{ info_visita.descripcio }}</textarea>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
-                <?php 
-                    if(isset($_GET["insert"]) && !empty($_GET["insert"] == "error"))
-                    {
-                        echo "<p class='buit_registre'>Error, la informació no s'ha penjat correctament.</p>";
-                    }
-                ?>
                 <div class="form-row pb-4">
                     <div class="col-md-1"></div>
                     <div class="col-10 text-right">
@@ -299,6 +293,54 @@ else
                     <div class="col-md-1"></div>
                 </div>
             </form>
+            <?php
+
+                if(isset($_GET["insert"]) && !empty($_GET["insert"]))
+                {
+                    //error que surt quan l'insert no sha afectutat.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Error, l'informació no s'ha penjat correctament.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["buit"]) && !empty($_GET["buit"]))
+                {
+                    //error que mostra que alguna variable esta buida.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Alguna variable esta buida.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["error"]) && !empty($_GET["error"]))
+                {
+                    //alguna varariable no existeix
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Alguna variable no existeix.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+                else if(isset($_GET["fitxer"]) && !empty($_GET["fitxer"] == "existeix"))
+                {
+                    //si arriba fitxer per get vol dir que el fitxer seleccionat existeix.
+                    echo "<div class='row'>
+                            <div class='col'>
+                                <div class='text-center'>
+                                    <p style='color: red;'>Error, el fitxer ja existeix.</p>
+                                </div>
+                            </div>
+                        </div> ";
+                }
+
+           ?>
            </div>
        </div> 
        </div>
@@ -307,17 +349,55 @@ else
     <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
+   <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 </div>
     <script>
+
+    function validar()
+    {
+        var nom = document.forms["visites"]["nom_visita"].value;
+        var preu = document.forms["visites"]["preu"].value;
+        var idioma = document.forms["visites"]["idioma"].value;
+        var places = document.forms["visites"]["places_totals"].value;
+        var durada = document.forms["visites"]["durada"].value;
+        var p_trobada = document.forms["visites"]["punt_trobada"].value;
+        var latitud = document.forms["visites"]["latitud"].value;
+        var longitud = document.forms["visites"]["longitud"].value;
+        var d_visita = document.forms["visites"]["dia_visita"].value;
+        var intro = document.forms["visites"]["exampleFormControlTextarea1"].value;
+        var desc = document.forms["visites"]["exampleFormControlTextarea2"].value;
+
+        //es comprova que les dades no estan buides.
+        if(nom == "" || preu == "" || idioma == "" || places == "" || durada == "" || p_trobada == "" || latitud == "" || longitud == "" || d_visita == "" || intro == "" || desc == "")
+        {
+            alert("Algun camp esta buit.");
+            return false;
+        }
+        else if(preu <= 0) 
+        {
+            //es comprova que el preu sigui major a 0
+            document.getElementById("preu_intro").innerHTML ='El preu no pot ser 0 o inferior.';
+            return false;
+        }
+    }
+
+
         var vm = new Vue ({
         el: "#app",
         data:{
+            date: '',
             info_visita: null,
             carregat: false,
             id: ''
         },
         methods:{
+            //es fa aquest metode perque la data sigui com a minim l'actual
+            date_min(){
+                var date_now = new Date().toISOString().slice(0, 10);
+                this.date = date_now;
+            },
+            //es reculles les dades de la vista per introduir-les als inputs.
             dadesVisita(){
                 axios.get("JSON/json_visites/dades_visites.php?id="  + this.id)
                 .then(res=>{
@@ -328,10 +408,14 @@ else
             }
         },
         created(){
+            //s'agafa la variable pasada per get id 
             this.id = window.location.search.split('=')[1]; 
         },
+        
         mounted(){
+            //es criden als metodes dades_visites i date_min.
             this.dadesVisita()
+            this.date_min()
         }
        
         })

@@ -204,7 +204,7 @@ $visita = [];
                                 }
                                 else
                                 {
-                                    header("Location: ../../profile_edit_visites.php?insert=error");
+                                    header("Location: ../../profile_add_visites.php?insert=error");
                                 }
                             }
                         }
@@ -214,12 +214,12 @@ $visita = [];
                     }
                     else
                     {
-                        header("Location: ../../profile_edit_visites.php?error=buit");
+                        header("Location: ../../profile_add_visites.php?buit=error");
                     }
                 }
                 else
                 {
-                    header("Location: ../../profile_edit_visites.php?error=error");
+                    header("Location: ../../profile_add_visites.php?error=error");
                 }
             }
             else
@@ -316,12 +316,12 @@ $visita = [];
                     }
                     else
                     {
-                        header("Location: ../../profile_edit_visites.php?error=buit");
+                        header("Location: ../../profile_edit_visites.php?id=" . $id_visita . "&buit=error");
                     }
                 }
                 else
                 {
-                    header("Location: ../../profile_edit_visites.php?error=error");
+                    header("Location: ../../profile_edit_visites.php?id=" . $id_visita . "&error=error");
                 }
             }
             else

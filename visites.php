@@ -69,6 +69,7 @@
 
 <body>
 <div id="app">
+    <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
     <div class="container-fluid">
        <div class="row">
@@ -79,6 +80,7 @@
            </div>
        </div>
        <div class="row">
+           <!--on es mostraran totes les visites turistiques per separat.-->
            <div class="col-lg-4 col-sm-6 thumb float-left mb-2" id="visites" v-if="carregat" v-for="visita in info_visita">
                 <div id="block_info" id="visites">
                 <a class="thumbnail" :href="'info_visita.php?id=' + visita.id_producte">
@@ -113,6 +115,8 @@
             carregat: false
         },
         methods:{
+            /*Metode que carrega l'informacio de la bbdd de les visites que hi han actualment alla les pasa a info_visita i apartir
+            d'aqui es pasa al lloc correspoent de la pagina.*/
             dadesVisita(){
                 axios.get("JSON/json_visites/dades_visites.php")
                 .then(res=>{
@@ -123,6 +127,7 @@
             }
         },
         mounted(){
+            //es crida al metode dadesvisita.
             this.dadesVisita()
         }
         
