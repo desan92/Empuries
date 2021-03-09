@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+
+if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
+{
+    header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -48,7 +55,7 @@
 <div class = "container_register">
     <div class="recuadre">
       <div class = "row">
-      <span class="col-12" id="titolregistre">REGISTRE</span>
+      <span class="col-12" id="titolregistre" style="color: navy;">REGISTRE</span>
         <form id="form_registre" name="registre" action="log_register/register.php" method="POST" onsubmit="return validacioRegistre()">
             <div class = "row">
                 <div class="form-group justify-content-center m-auto">

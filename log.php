@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
+{
+    header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -53,7 +60,7 @@
 <div class = "container_log">
   <div class="recuadre">
     <div class = "row">
-      <span class="col-12" id="titollog">EMPURIES</span>
+      <span class="col-12" id="titollog" style="color: navy;">EMPURIES</span>
       <p class="col-12" id="subtitollog">Per iniciar sessió, introduiex les teves dades.</p>
         <form id="form_registre" action="log_register/login.php" method="POST">
             <div class= "row">

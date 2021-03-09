@@ -1,4 +1,5 @@
 <?php
+//pagina per destruir les sessions que s'han generat.
 session_start();
 
 session_unset();

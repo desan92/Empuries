@@ -305,8 +305,9 @@ else
               //si s'aproba el pagament surt un alert i s'envia a una pagina on es registrara  a la bbdd.
               if(details.status == "COMPLETED")
               {
+                  console.log(details)
                   alert('Transaction completed by ' + details.payer.name.given_name);//details.payer.name.given_name
-                  window.location.href = "http://localhost/Emporium/cistella/registre_comanda.php?payment=accept";
+                  //window.location.href = "http://localhost/Emporium/cistella/registre_comanda.php?payment=accept";
               }
               else
               {
