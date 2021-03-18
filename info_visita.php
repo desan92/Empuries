@@ -196,10 +196,10 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
         </div>
        </div>
 
-       <div class="container recuadre_allotjament" v-if="carregat">
+       <div class="container recuadre_allotjament">
        <div class="row">
             <div class="col-md-5 col-sm-12 m-auto" id="imatge">
-                <div v-if="carregat" class="d-block" id="imatge_map"></div>  
+                <div class="d-block" id="imatge_map"></div>  
             </div>
             <div class="col-md-1 col-sm-12"></div>
             <div class="col-md-6 col-sm-12 align-middle m-auto" id="desc_visita" v-if="carregat">
@@ -337,14 +337,12 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                    {
                        this.options_visita.push(i);
                    }
+
+                   //es crida a la funcio initMap
+                   initMap()
                    
-                   //es crida la funcio de googlemaps.
-                   //initMap()
                 })
             },
-            dateformat(){
-                
-            }
         },
         created(){
             //es treu l'id pasada per url.
@@ -353,38 +351,25 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
         mounted(){
             //es crida dadesvisita.
             this.dadesVisita()
-            this.dateformat()
         }
         
     });
-    //funcio de googlemaps.
-    
-    //es crea un script on es posa la src i que es async.
-    var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&language=ca&callback=initMap';
-    script.async = true;
-
-    window.initMap = function() {
-        //es pasen les coordenades obtingudes de la bbdd de latitud i longitud.
+    /*Funcio de google maps.*/
+    function initMap()
+    {
+        //es recullen les coordenades de vue.js i es pasan a float.
         var coordenades = {lat: parseFloat(vm.info_visita.latitud), lng: parseFloat(vm.info_visita.longitud)};
-        //es posa un zoom a l'imatge i es centran les coordendaes al centre
+        //es dona un zoom al maps i es centra el lloc proporcionat a les coordenades.
         var opcions = {zoom: 15, center: coordenades}
-        //es posa al div el mapa.
+        //es pasara al div on es mostrara.
         var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
-        //es posan les opcions del marker.
-        var optionsmarker = {
-            position: coordenades,
-            map: map
-        };
-        //es posa una marca al lloc exacte de les coordenades.
-        var marker = new google.maps.Marker(optionsmarker)
+        //aqui es posa la marca del lloc exacta on es troba
+        var marker = new google.maps.Marker({position: coordenades, map: map});
     }
-
-    // Append the 'script' element to 'head'
-    document.head.appendChild(script);
-    </script>
     
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap&libraries=&v=weekly" async type="text/javascript"></script>-->
+    
+</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
 
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>

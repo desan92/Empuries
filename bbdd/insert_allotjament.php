@@ -51,10 +51,10 @@ if($conn)
     $variable_insert = substr($variable_insert, 0, -1);
 
 //part comentada per si s'entra un altre vegada que no es fasi un altre insert a la bbdd.
-/*
+
     $insert = "INSERT INTO `info_allotjament`(`nom_allotjament`, `direccio`, `poblacio`, `telefon`, `web`, `email`, `imatge`) 
                VALUES" . $variable_insert;
-*/
+
 
 //si la query es correcte s'insertara a la bbdd si no es mostrara l'error.
     if (mysqli_query($conn, $insert)) 

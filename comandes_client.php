@@ -227,6 +227,18 @@ else
                                 </div>
                             </div> ";
                     }
+                    else if(isset($_GET["payment"]) && !empty($_GET["payment"]))
+                    {
+                        echo '<script language="javascript">';
+                        echo "const okalert = true;
+
+                        if(okalert) {
+                            setTimeout(function() {
+                                alert('Comanda realitzada.')
+                        }, 1000);
+                        }";
+                        echo '</script>';
+                    }
                 ?>
            </div>
        </div>

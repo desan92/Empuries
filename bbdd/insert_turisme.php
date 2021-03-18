@@ -61,10 +61,10 @@ if($conn)
     }
     //es treu la ultima coma que sobra a $variable_insert.
     $variable_insert = substr($variable_insert, 0, -1);
-/*
+
     $insert = "INSERT INTO `info_turistica`(`nom_turisme`, `descripcio`, `direccio`, `poblacio`, `telefon`, `latitud`, `longitud`, `horari`, `preu`, `pagina_web`, `email`, `imatge`) 
                VALUES" . $variable_insert;
-*/
+
 
 //si la query es correcte s'insertara a la bbdd si no es mostrara l'error.
     if (mysqli_query($conn, $insert)) 

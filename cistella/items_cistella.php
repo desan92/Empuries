@@ -7,7 +7,7 @@
         s'obre una connexio al servidor MySQL, es pasan les dades de localhost,
         l'usuari, la contrasenya(si en te) i el nom de la bbdd.
     */
-    $conn = mysqli_connect("localhost", "root", "", "empuries");
+    $conn = mysqli_connect("localhost", "emporium", "GLjDh4G6", "db_emporium");
 
     //variable on es guardara l'informació del producte de la bbdd.
     $producte = [];

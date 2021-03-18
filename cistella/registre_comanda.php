@@ -7,7 +7,7 @@
         s'obre una connexio al servidor MySQL, es pasan les dades de localhost,
         l'usuari, la contrasenya(si en te) i el nom de la bbdd.
     */
-    $conn = mysqli_connect("localhost", "root", "", "empuries");
+    $conn = mysqli_connect("localhost", "emporium", "GLjDh4G6", "db_emporium");
 
     //variable on es guardara l'inforamció de la comanda.
     $comanda = [];
@@ -93,7 +93,7 @@
                         if (mysqli_query($conn, $insert)) 
                         {
                             unset($_SESSION["cistella"]);
-                            header("Location: ../profile_client.php");
+                            header("Location: ../comandes_client.php?payment=accept");
 
                             //apartir del trigger que hi ha a info.sql s'actulitza la taula productes_botiga columna places.(si sha fet l'insert a detalls_comanda)
                         } 

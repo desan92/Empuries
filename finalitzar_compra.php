@@ -20,6 +20,11 @@ if(isset($_SESSION["rol"]))
             $mail = $_SESSION['mail'];
             $id = $_SESSION["id"];
 
+            if(!isset($_SESSION["cistella"]) || empty($_SESSION["cistella"]))
+            {
+                header("Location: cistella_compra.php");
+            }
+
         }
         else
         {
@@ -112,6 +117,12 @@ else
             padding: 5%;
         }
 
+        @media all and (max-width: 992px){
+            #paypal_cont{
+                margin-top: 25px;
+            }
+        }
+
     </style>
 </head>
 
@@ -157,8 +168,9 @@ else
             </nav>
             </div>
        </div><br>
+       <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-8">
             <div class="container pt-3" style="background-color: #ffffffc4;">
                 <!-- Alert que surt si no hi ha cap item a finalitzar compra.-->
                 <div v-if="!cistella.length" class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -166,7 +178,7 @@ else
                 </svg>&nbsp;&nbsp;No hi ha items a la cistella de compra.</div>
                 <!-- Part informativa de la compra abans de comprar.-->
                 <div class="table-responsive shopping-cart">
-                    <table  v-if="cistella.length" class="table">
+                    <table v-if="cistella.length" class="table">
                         <thead>
                             <tr>
                                 <th>Nom Producte</th>
@@ -199,11 +211,13 @@ else
                 </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4" id="paypal_cont">
                 <!--boto de pagament de paypal-->
-                <div v-if="cistella.length" id="paypal-button-container"></div>
+                <div id="paypal-button-container"></div>
             </div>
         </div>
+       </div>
+    </div>
     </div>
  
     
@@ -305,9 +319,10 @@ else
               //si s'aproba el pagament surt un alert i s'envia a una pagina on es registrara  a la bbdd.
               if(details.status == "COMPLETED")
               {
-                  console.log(details)
-                  alert('Transaction completed by ' + details.payer.name.given_name);//details.payer.name.given_name
-                  //window.location.href = "http://localhost/Emporium/cistella/registre_comanda.php?payment=accept";
+                  //es tria la url on s'enviara quan s'ha fet el pagament
+                  nextUrl = (window.location+'').replace('/finalitzar_compra.php', '/cistella/registre_comanda.php?payment=accept');
+                  //s'envia a la direccio que es s'ha fet abans.
+                  window.location.href = nextUrl;
               }
               else
               {

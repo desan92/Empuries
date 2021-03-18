@@ -7,7 +7,7 @@ s'obre una connexio al servidor MySQL, es pasan les dades de localhost,
 l'usuari, la contrasenya(si en te) i el nom de la bbdd.
 */
 
-$conn = mysqli_connect("localhost", "root", "", "empuries");
+$conn = mysqli_connect("localhost", "emporium", "GLjDh4G6", "db_emporium");
 
 //variable on s'emagatzemara tota l'informacio rebuda de la consulta de la bbdd.
 $turisme = [];

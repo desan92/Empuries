@@ -6,7 +6,7 @@ session_start();
 s'obre una connexio al servidor MySQL, es pasan les dades de localhost,
 l'usuari, la contrasenya(si en te) i el nom de la bbdd.
 */
-$conn = mysqli_connect("localhost", "root", "", "empuries");
+$conn = mysqli_connect("localhost", "emporium", "GLjDh4G6", "db_emporium");
 
 //variable que enmagatzemara l'informació rebuda de la consulta a la bbdd.
 $allotjament = [];

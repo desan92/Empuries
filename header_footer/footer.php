@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid" id="foot_div">
     <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start p-0 w-100">
+    <footer class="bg-light text-center text-lg-start p-0 w-100" id="footer">
         <!-- Grid container -->
         <div class="container-fluid p-4" id="footer">
           <!--Grid row-->
@@ -55,9 +55,9 @@
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div class="p-3" id="footer_copy">
+        <div id="footer_copy">
             <div class="float-none"></div>
-            <div class="text-center text-light" style="background-color: navy;">
+            <div class="text-center text-light pb-2" style="background-color: navy;">
                <span class="mb-5">Copyright © 2021: Emporium tots els drets reservats
                 | <a href="politica_cookies.php">Política de cookies</a></span>
             </div>

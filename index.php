@@ -94,6 +94,7 @@
        </div>
        <div class="div-spacer"></div>
        <div class="div-spacer"></div>
+       <div class="container">
        <div class="row">
            <div class="col-12">
                <h2 class="titol_destacats text-center w-75"><span><b>Visites destacades</b></span></h2>
@@ -103,7 +104,7 @@
        <div class="row">
            <!--v-for per que carregui les dues visites que s'han carregat al JSON-->
             <div class="col-md-6 col-sm-12 thumb float-left mb-2" id="visites" v-if="carregat" v-for="visita in info_visita">
-                <div id="block_info" id="visites">
+                <div id="block_info">
                     <!--:href per poder pasar-ki la variable recollida per vue.-->
                 <a class="thumbnail" :href="'info_visita.php?id=' + visita.id_producte">
                     <div>
@@ -133,7 +134,7 @@
        </div>
        <div class="div-spacer"></div>
        <div class="row">
-            <div class="col-md-6 col-sm-12 thumb float-left" v-if="carregat" v-for="turisme in info_turistica">
+            <div class="col-md-6 col-sm-12 thumb float-left" id="visites" v-if="carregat" v-for="turisme in info_turistica">
             <div id="block_info">
             <a class="thumbnail" :href="'info_lloc_turistic.php?id=' + turisme.id_turisme">
                 <div>
@@ -155,9 +156,9 @@
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="monuments.php"><i id="icon_1" class="fas fa-archway stretched-link"></i><br>Monuments</a></div>
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="visites.php"><i id="icon_1" class="fas fa-bus stretched-link"></i><br>Visites</a></div>
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="allotjaments.php"><i id="icon_1" class="fas fa-hotel stretched-link"></i><br>Allotjaments</a></div>
-            <!--<div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="#"><i id="icon_1" class="fas fa-camera-retro stretched-link"></i><br>Galeria Visites</a></div>-->
             <div class="col-md-2 col-sm-6 col-xs-12" id="col_btn_intro"><a href="about_us.php"><i id="icon_1" class="fas fa-male stretched-link"></i><br>About us</a></div>
             <div class="col-md-1"></div>
+       </div>
        </div>
     </div>
     <!--footer de la pagina-->

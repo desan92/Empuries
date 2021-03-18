@@ -57,7 +57,7 @@ if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
 <body>
     <!--header de la pagina-->
     <?php include('header_footer/header.php'); ?>
-<div class = "container_log">
+<div class = "container container_log">
   <div class="recuadre">
     <div class = "row">
       <span class="col-12" id="titollog" style="color: navy;">EMPURIES</span>

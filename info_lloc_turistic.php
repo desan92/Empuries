@@ -25,6 +25,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        
     <title>Emporium</title>
     <style>
         body{
@@ -146,7 +147,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                 <div class="col-md-1 col-sm-12"></div>
                 <div class="col-md-6 col-sm-12 m-auto justify-content-center " id="imatge">
 
-                    <p class="text-center mt-3 align-middle"><b>Horari:</b></p><p class="text-center align-middle" v-html="info_lloc_turistic.horari"></p></p>
+                    <p class="text-center mt-3 align-middle"><b>Horari:</b></p><p class="text-center align-middle" v-html="info_lloc_turistic.horari"></p>
                     <p class="text-center align-middle"><b>Preu:</b> {{ info_lloc_turistic.preu }}</p>
                 </div>
         </div>
@@ -157,7 +158,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                 </div>
             </div>
        </div>
-       <div class="container recuadre_allotjament" v-if="carregat">
+       <div class="container recuadre_allotjament">
        <div class="row">
             <div class="col-md-6 col-sm-12 m-auto" id="imatge">
                 <!--lloc on s'insertara googlemaps.-->
@@ -197,10 +198,10 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                     this.info_lloc_turistic = res.data
                     this.carregat = true
 
-                    //es crida a la funcio de google maps.
-                    //initMap()
+                    //es crida a la funcio initMap
+                    initMap()
                 })
-            }
+            },
         },
         created(){
             //es recull la id de la url.
@@ -213,7 +214,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
     
     })
     /*Funcio de google maps.*/
-    /*function initMap()
+    function initMap()
     {
         //es recullen les coordenades de vue.js i es pasan a float.
         var coordenades = {lat: parseFloat(vm.info_lloc_turistic.latitud), lng: parseFloat(vm.info_lloc_turistic.longitud)};
@@ -223,35 +224,12 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
         var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
         //aqui es posa la marca del lloc exacta on es troba
         var marker = new google.maps.Marker({position: coordenades, map: map});
-    }*/
-    var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&language=ca&callback=initMap&libraries=&v=weekly';
-    script.async = true;
-
-    window.initMap = function() {
-        //es pasen les coordenades obtingudes de la bbdd de latitud i longitud.
-        var coordenades = {lat: parseFloat(vm.info_lloc_turistic.latitud), lng: parseFloat(vm.info_lloc_turistic.longitud)};
-        //es posa un zoom a l'imatge i es centran les coordendaes al centre
-        var opcions = {
-            center: coordenades,
-            zoom: 15
-        }
-        //es posa al div el mapa.
-        var map = new google.maps.Map(document.getElementById("imatge_map"), opcions);
-        //es posan les opcions del marker.
-        var optionsmarker = {
-            position: coordenades,
-            map: map
-        };
-        //es posa una marca al lloc exacte de les coordenades.
-        var marker = new google.maps.Marker(optionsmarker)
     }
 
-    // Append the 'script' element to 'head'
-    document.head.appendChild(script);
+    
     
 </script>
-<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap" type="text/javascript"></script>-->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
         
 </body>
         <script src="js/whatsapp/animation_whatsapp_top.js"></script>
@@ -259,4 +237,5 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
         <script src="bootstrap-4.5.0-dist/js/jquery-3.5.1.slim.min.js"></script>
         <script src="bootstrap-4.5.0-dist/js/popper.min.js"></script>
         <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+
 </html>

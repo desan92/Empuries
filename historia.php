@@ -85,7 +85,7 @@
 
         .carousel-item img{
             background-size: 100% 100%;
-            height: 492px;
+            height: 600px;
             width: 100%;
         }
 
@@ -94,6 +94,12 @@
             .historia{
                 column-count: 1;
             }
+
+            .carousel-item img{
+                height: 400px;
+
+            }
+
         }
 
     </style>
@@ -110,6 +116,7 @@
               </div>
            </div>
        </div>
+       <div class="container">
        <div class="row p-3 mt-2">
             <div class="col-12 p-5 container_info_historia">
                   <!--corousel de boostrap on sortiran tres imatges i canviaran en un determinat temps-->
@@ -121,7 +128,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="images/img_historia/Sant_Pere_de_Rodes_-_Alt_Empordà_-_Girona.jpg" alt="First slide">
+                <img class="d-block w-100" src="images/img_historia/Sant_Pere_de_Rodes_-_Alt_Emporda_-_Girona.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
                 <img class="d-block w-100" src="images/img_historia/quirze_colera_2.jpg" alt="Second slide">
@@ -187,7 +194,7 @@
             </div>
        </div>
     </div>
-    
+    </div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>
    <div class="div-spacer"></div>

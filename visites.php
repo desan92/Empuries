@@ -79,6 +79,7 @@
               </div>
            </div>
        </div>
+       <div class="container">
        <div class="row">
            <!--on es mostraran totes les visites turistiques per separat.-->
            <div class="col-lg-4 col-sm-6 thumb float-left mb-2" id="visites" v-if="carregat" v-for="visita in info_visita">
@@ -98,6 +99,7 @@
                 </a>
                 </div>
            </div>
+       </div>
        </div>
     </div>
     

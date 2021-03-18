@@ -4,9 +4,9 @@ Class Connexio{
        
     //variables on es pasen les dades a la bbdd.
     private $localhost = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $bbdd = "empuries";
+    private $user = "emporium";
+    private $pass = "GLjDh4G6";
+    private $bbdd = "db_emporium";
     
     public function Conect_bbdd(){
         //es pasen les variables anteriors a la variable conn per posteriorment connectarse a la bbdd.

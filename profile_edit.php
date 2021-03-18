@@ -200,6 +200,8 @@ else
        }
        
        ?>
+        <div class="div-spacer"></div>
+        <div class="div-spacer"></div>
        <div class="container">
            <div id="container_perfil_edit">
            <div class="row mt-3">
@@ -251,6 +253,8 @@ else
            </div>
        </div>
     </div>
+    <div class="div-spacer"></div>
+   <div class="div-spacer"></div>
     <!--footer de la pagina-->
    <?php include('header_footer/footer.php'); ?>
 

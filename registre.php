@@ -52,7 +52,7 @@ if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
 <body>
     <!--header de la pagina-->
 <?php include('header_footer/header.php'); ?>
-<div class = "container_register">
+<div class = "container container_register">
     <div class="recuadre">
       <div class = "row">
       <span class="col-12" id="titolregistre" style="color: navy;">REGISTRE</span>
