@@ -80,6 +80,10 @@
         color: #47ff5d;
     }
 
+    #bold_info{
+        color: navy;
+    }
+
     </style>
 </head>
 
@@ -105,12 +109,12 @@
                 l'usuari.</p>
                 <div class="div-spacer"></div>
                 <h2 class="text-center" style="color: navy;"><b>Per a què s'utilitzen les cookies i quins solen ser les seves finalitats?</b></h2><br>
-                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b>Cookies d'anàlisis:</b> són aquelles cookies que bé, tractades per nosaltres o per tercers,
+                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b id="bold_info">Cookies d'anàlisis:</b> són aquelles cookies que bé, tractades per nosaltres o per tercers,
                 ens permeten quantificar el nombre d'usuaris i així realitzar el mesurament i anàlisi 
                 estadística de la utilització que fan els usuaris del servei. Per això s'analitza la 
                 seva navegació en la nostra pàgina web amb la finalitat de millorar l'experiència de 
                 l'usuari.</p>
-                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b>Cookies tècniques:</b> Són aquelles que permeten a l'usuari la navegació a través de
+                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b id="bold_info">Cookies tècniques:</b> Són aquelles que permeten a l'usuari la navegació a través de
                 la pàgina web o aplicació i la utilització de les diferents opcions o serveis
                 que en ella existeixen. Per exemple, controlar el trànsit i la comunicació de
                 dades, identificar la sessió, accedir a les parts web d'accés restringit,
@@ -118,19 +122,19 @@
                 d'inscripció o participació en un esdeveniment, utilitzar elements de 
                 seguretat durant la navegació i emmagatzemar continguts per a la difusió 
                 de vídeos o so.</p>
-                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b>Cookies sobre personalització:</b> Són aquelles que permeten a l'usuari accedir
+                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b id="bold_info">Cookies sobre personalització:</b> Són aquelles que permeten a l'usuari accedir
                 al servei amb algunes característiques de caràcter general predefinides en la 
                 seva terminal o que el propi usuari defineixi. Per exemple, l'idioma, el tipus 
                 de navegador a través del qual accedeix al servei, el disseny de continguts 
                 seleccionat, geolocalització del terminal i la configuració regional des d'on 
                 s'accedeix al servei.</p>
-                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b>Cookies sobre preferències:</b> Aquestes cookies permeten que els nostres llocs
+                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b id="bold_info">Cookies sobre preferències:</b> Aquestes cookies permeten que els nostres llocs
                 web recordin informació que canvia l'aspecte o el comportament del lloc com,
                 per exemple, el teu idioma preferit o la regió en la qual et trobes. Per exemple,
                 en recordar la teva regió, un lloc web pot proporcionar-te notícies sobre el trànsit
                 o butlletins meteorològics locals. Aquestes cookies també et permeten canviar la 
                 grandària del text, la font i altres parts de les pàgines web que pots personalitzar.</p>
-                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b>Cookies publicitàries:</b> Són aquelles que permeten la gestió eficaç dels espais 
+                <p><i class="fas fa-angle-right" id="icon_cookies"></i> <b id="bold_info">Cookies publicitàries:</b> Són aquelles que permeten la gestió eficaç dels espais 
                 publicitaris que s'han inclòs en la pàgina web o aplicació des de la qual es presta 
                 el servei. Permeten adequar el contingut de la publicitat perquè aquesta sigui 
                 rellevant per a l'usuari i per a evitar mostrar anuncis que l'usuari ja hagi vist.</p>

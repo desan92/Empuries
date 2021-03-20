@@ -98,6 +98,10 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
             font-weight: bold;
         }
 
+        #bold_info{
+            color: navy;
+        }
+
         @media all and (max-width: 768px){
         #imatge_lloc_turistic{
             align-items: center;
@@ -147,8 +151,8 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                 <div class="col-md-1 col-sm-12"></div>
                 <div class="col-md-6 col-sm-12 m-auto justify-content-center " id="imatge">
 
-                    <p class="text-center mt-3 align-middle"><b>Horari:</b></p><p class="text-center align-middle" v-html="info_lloc_turistic.horari"></p>
-                    <p class="text-center align-middle"><b>Preu:</b> {{ info_lloc_turistic.preu }}</p>
+                    <p class="text-center mt-3 align-middle"><b id="bold_info">Horari:</b></p><p class="text-center align-middle" v-html="info_lloc_turistic.horari"></p>
+                    <p class="text-center align-middle"><b id="bold_info">Preu:</b> {{ info_lloc_turistic.preu }}</p>
                 </div>
         </div>
             <br>
@@ -168,11 +172,11 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
                 
             <!--<div class="col-md-1 col-sm-12"></div>-->
             <div class="col-md-6 col-sm-12 align-middle m-auto" id="desc_allotjament" v-if="carregat">
-                <p class="text-center align-middle mt-3"><b>Web:</b> <a :href="'//' + info_lloc_turistic.pagina_web" target="_blank">{{ info_lloc_turistic.pagina_web }} </a></p>
-                <p class="text-center align-middle"><b>Email:</b> {{ info_lloc_turistic.email }}</p>
-                <p class="text-center align-middle"><b>Telefon:</b> {{ info_lloc_turistic.telefon }}</p>
-                <p class="text-center align-middle"><b>Poblacio:</b> {{ info_lloc_turistic.poblacio }}</p>
-                <p class="text-center align-middle"><b>Direccio:</b> {{ info_lloc_turistic.direccio }}</p>
+                <p class="text-center align-middle mt-3"><b id="bold_info">Web:</b> <a :href="'//' + info_lloc_turistic.pagina_web" target="_blank">{{ info_lloc_turistic.pagina_web }} </a></p>
+                <p class="text-center align-middle"><b id="bold_info">Email:</b> {{ info_lloc_turistic.email }}</p>
+                <p class="text-center align-middle"><b id="bold_info">Telefon:</b> {{ info_lloc_turistic.telefon }}</p>
+                <p class="text-center align-middle"><b id="bold_info">Poblacio:</b> {{ info_lloc_turistic.poblacio }}</p>
+                <p class="text-center align-middle"><b id="bold_info">Direccio:</b> {{ info_lloc_turistic.direccio }}</p>
             </div>
             </div>
        </div>
@@ -229,7 +233,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
     
     
 </script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&language=ca&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
         
 </body>
         <script src="js/whatsapp/animation_whatsapp_top.js"></script>

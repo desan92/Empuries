@@ -85,6 +85,10 @@
             color: white !important;
         }
 
+        #bold_info{
+            color: navy;
+        }
+
         /**media querie  que adapta les imatdes dels hotels i el seu contingut al centre del
         div quan es menosr a 768px*/
         @media all and (max-width: 768px){
@@ -101,6 +105,7 @@
         #imatge{
             text-align: center;
         }
+
     }
     </style>
 </head>
@@ -163,12 +168,12 @@
                 </div>
                 <div class="col-md-1 col-sm-12"></div>
                 <div class="col-md-6 col-sm-12" id="desc_allotjament">
-                        <p><b>Allotjament:</b> {{ allotjament.nom_allotjament }}</p>
-                        <p><b>Adreça:</b> {{ allotjament.direccio }}</p>
-                        <p><b>Poblacio:</b> {{ allotjament.poblacio }}</p>
-                        <p><b>Telefon:</b> {{ allotjament.telefon }}</p>
-                        <p><b>Web:</b> <a v-bind:href="'//' + allotjament.web" target="_blank"> {{ allotjament.web }}</a></p>
-                        <p><b>Email:</b> {{ allotjament.email }}</p>
+                        <p><b id="bold_info">Allotjament:</b> {{ allotjament.nom_allotjament }}</p>
+                        <p><b id="bold_info">Adreça:</b> {{ allotjament.direccio }}</p>
+                        <p><b id="bold_info">Poblacio:</b> {{ allotjament.poblacio }}</p>
+                        <p><b id="bold_info">Telefon:</b> {{ allotjament.telefon }}</p>
+                        <p><b id="bold_info">Web:</b> <a v-bind:href="'//' + allotjament.web" target="_blank"> {{ allotjament.web }}</a></p>
+                        <p><b id="bold_info">Email:</b> {{ allotjament.email }}</p>
                 </div>
             </div>
        </div>

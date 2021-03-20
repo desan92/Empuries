@@ -77,6 +77,10 @@
             color: navy;
             font-weight: 600;
         }
+
+        #bold_info{
+            color: navy;
+        }
         /*Media querie per aumentar els paddings laterals de l'informacio dels admins. */
         @media all and (max-width: 768px){
             .form_contacte{
@@ -103,21 +107,21 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 m-auto recuadre_personal">
                 <img src="images/perfil/perfil.jpg" id="imatge-personal" class="rounded d-block m-auto">
-                <p class="mt-3"><b>Nom:</b> Jordi</p>
-                <p><b>Cognom:</b> de San Antonio Planas</p>
-                <p><b>Estudis:</b> Graduat en Historia (UAB).</p>
-                <p><b>Especialitat:</b> Master en Arqueologia Clasica (UAB) i
+                <p class="mt-3"><b id="bold_info">Nom:</b> Jordi</p>
+                <p><b id="bold_info">Cognom:</b> de San Antonio Planas</p>
+                <p><b id="bold_info">Estudis:</b> Graduat en Historia (UAB).</p>
+                <p><b id="bold_info">Especialitat:</b> Master en Arqueologia Clasica (UAB) i
                 Master en Historia de l'Art (UAB).</p>
-                <p><b>Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
+                <p><b id="bold_info">Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
             </div>
             <div class="col-md-2 col-sm-12"></div>
             <div class="col-md-5 col-sm-12 recuadre_personal">
                 <img src="images/perfil/perfil.jpg" id="imatge-personal" class="rounded d-block m-auto">
-                <p class="mt-3"><b>Nom:</b> Glòria</p>
-                <p><b>Cognom:</b> Vergés Marés</p>
-                <p><b>Estudis:</b> Graduada en Historia (UAB).</p>
-                <p><b>Especialitat:</b> Master de Mediterrani Antic (UAB).</p>
-                <p><b>Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
+                <p class="mt-3"><b id="bold_info">Nom:</b> Glòria</p>
+                <p><b id="bold_info">Cognom:</b> Vergés Marés</p>
+                <p><b id="bold_info">Estudis:</b> Graduada en Historia (UAB).</p>
+                <p><b id="bold_info">Especialitat:</b> Master de Mediterrani Antic (UAB).</p>
+                <p><b id="bold_info">Funcio:</b> Divulgació dels béns i patrimoni de l'Empordà.</p>
             </div>
         </div>
    </div>

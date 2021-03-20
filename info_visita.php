@@ -113,6 +113,10 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
             text-shadow: black 0.1em 0.1em 0.2em;
         }
 
+        #bold_info{
+            color: navy;
+        }
+
         /*Media querie que adapata l'imatge per sobre de 1100 px */
         @media all and (min-width: 1100px){
         #imatge_visita{
@@ -203,14 +207,14 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
             </div>
             <div class="col-md-1 col-sm-12"></div>
             <div class="col-md-6 col-sm-12 align-middle m-auto" id="desc_visita" v-if="carregat">
-                <p class="text-center align-middle mt-2"><b>Punt de Trobada:</b> {{ info_visita.punt_trobada }} </p>
-                <p class="text-center align-middle"><b>Dia Visita:</b> {{ formatted_date }}</p>
-                <p v-if="info_visita.places > 0" class="text-center align-middle"><b>Places restants:</b> {{ info_visita.places }}</p>
-                <p v-else="info_visita.places == 0" class="text-center align-middle"><b>Places restants: <span style="color: red;">Producte Esgotat</span></b></p>
-                <p class="text-center align-middle"><b>Durada:</b> {{ info_visita.durada }}</p>
-                <p class="text-center align-middle"><b>Idioma:</b> {{ info_visita.idioma }}</p>
-                <p v-if="info_visita.preu > 0" class="text-center align-middle"><b>Preu:</b> {{ info_visita.preu }}€</p>
-                <p v-else="info_visita.preu == 0" class="text-center align-middle"><b>Preu:</b> Gratuït</p>
+                <p class="text-center align-middle mt-2"><b id="bold_info">Punt de Trobada:</b> {{ info_visita.punt_trobada }} </p>
+                <p class="text-center align-middle"><b id="bold_info">Dia Visita:</b> {{ formatted_date }}</p>
+                <p v-if="info_visita.places > 0" class="text-center align-middle"><b id="bold_info">Places restants:</b> {{ info_visita.places }}</p>
+                <p v-else="info_visita.places == 0" class="text-center align-middle"><b id="bold_info">Places restants: <span style="color: red;">Producte Esgotat</span></b></p>
+                <p class="text-center align-middle"><b id="bold_info">Durada:</b> {{ info_visita.durada }}</p>
+                <p class="text-center align-middle"><b id="bold_info">Idioma:</b> {{ info_visita.idioma }}</p>
+                <p v-if="info_visita.preu > 0" class="text-center align-middle"><b id="bold_info">Preu:</b> {{ info_visita.preu }}€</p>
+                <p v-else="info_visita.preu == 0" class="text-center align-middle"><b id="bold_info">Preu:</b> Gratuït</p>
                 <!-- Button trigger modal -->
                 <?php 
                 /** if else on depenent de si es usuari, client o admin es fara una cosa o una altre
@@ -369,7 +373,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]))
     
     
 </script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SCbN9ajO1phNjE3rAMkwcY-psqVEVIM&language=ca&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
 
     <script src="js/whatsapp/animation_whatsapp_top.js"></script>
     <script src="js/cookies/cookies.js"></script>
