@@ -60,7 +60,7 @@ if(isset($_SESSION["rol"]) && !empty($_SESSION["rol"]))
 <div class = "container container_log">
   <div class="recuadre">
     <div class = "row">
-      <span class="col-12" id="titollog" style="color: navy;">EMPURIES</span>
+      <span class="col-12" id="titollog" style="color: navy;">EMPORIUM</span>
       <p class="col-12" id="subtitollog">Per iniciar sessió, introduiex les teves dades.</p>
         <form id="form_registre" action="log_register/login.php" method="POST">
             <div class= "row">
