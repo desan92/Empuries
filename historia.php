@@ -120,7 +120,7 @@
        <div class="row p-3 mt-2">
             <div class="col-12 p-5 container_info_historia">
                   <!--corousel de boostrap on sortiran tres imatges i canviaran en un determinat temps-->
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
